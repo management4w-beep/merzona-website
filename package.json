@@ -1,0 +1,2 @@
+{ "name": "merzona-website", "private": true, "type": "module",
+  "scripts": { "gallery": "node scripts/fetch-gallery.mjs", "build": "node build.mjs" } }
