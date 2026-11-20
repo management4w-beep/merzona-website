@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 import { SITE_URL, company, branches } from './src/config.mjs';
 import { services, ui as ui0, pages } from './src/content.mjs';
 import { checklists, extraUi, aboutPage, guidePage } from './src/content2.mjs';
+import { arTitles, seoExtra, branchSeo } from './src/seo.mjs';
+for (const s of services) if (arTitles[s.slug]) s.ar.title = arTitles[s.slug];
 
 const ui = { ar: { ...ui0.ar, ...extraUi.ar, nav: { ...ui0.ar.nav, ...extraUi.ar.nav } }, en: { ...ui0.en, ...extraUi.en, nav: { ...ui0.en.nav, ...extraUi.en.nav } } };
 
@@ -232,11 +234,16 @@ function bodyService(lang, page) {
   const t = ui[lang], s = page.svc, c = s[lang];
   const related = services.filter((x) => x.slug !== s.slug).slice(0, 7);
   const cl = checklists[s.slug][lang];
+  const x = seoExtra[s.slug];
+  const aka = x ? `<p class="muted aka">${esc(lang === 'ar' ? 'تُعرف أيضاً بـ: ' : 'Also called: ')}${esc(x.aka[lang].join(lang === 'ar' ? '، ' : ', '))}</p>` : '';
+  const prose = x ? `<section class="sec"><div class="wrap narrow prose">${x.body[lang].map((p) => `<p>${esc(p)}</p>`).join('')}${aka}</div></section>` : '';
+  const faqs = [...(x ? x.faq[lang] : []), ...t.faqSvc(c.name)];
   return `${phero(lang, page, c, ctaButtons(lang, c.name, 'cta-hero'))}
+${prose}
 <section class="sec"><div class="wrap two"><div><h2>${esc(t.features)}</h2><ul class="ticks">${c.features.map((f) => `<li>${esc(f)}</li>`).join('')}</ul></div><div><h2>${esc(t.uses)}</h2><ul class="plain">${c.uses.map((f) => `<li>${esc(f)}</li>`).join('')}</ul></div></div></section>
 ${galleryBlock(lang, s.cats, { per: 8, limit: 8, heading: `${t.ourWork}: ${c.name}` })}
 <section class="sec"><div class="wrap two"><div><h2>${esc(t.checklistH)}</h2><p>${esc(t.checklistP)}</p></div><div><ul class="ticks">${cl.map((f) => `<li>${esc(f)}</li>`).join('')}</ul></div></div></section>
-${faqBlock(lang, t.faq, t.faqSvc(c.name))}
+${faqBlock(lang, t.faq, faqs)}
 <section class="sec sec-alt"><div class="wrap"><h2>${esc(t.related)}</h2><p class="chips">${related.map((x) => `<a href="${href(lang, `/services/${x.slug}/`)}">${esc(x[lang].name)}</a>`).join('')}<a class="chip-all" href="${href(lang, '/services/')}">${esc(t.allServices)}</a></p></div></section>
 ${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP, c.name)}`;
 }
@@ -249,6 +256,7 @@ function bodyBranch(lang, page) {
   const mix = ['door', 'cast aluminum handrails', 'curtain wall design', 'glass handrail', 'showers', 'pergolas', 'sliding', 'glass majlis'];
   const extra = `<div class="cta cta-hero"><a class="btn btn-wa" href="${waLink(b, msg)}" rel="noopener">${WA_ICON}${esc(key === 'sy' ? t.waSy : t.waAe)}</a><a class="btn btn-line-d" href="tel:${b.tel}">${PHONE_ICON}<span dir="ltr">${b.phoneDisplay}</span></a></div>`;
   return `${phero(lang, page, c, extra)}
+${branchSeo[page.key] ? `<section class="sec sec-tight"><div class="wrap narrow prose"><h2>${esc(branchSeo[page.key][lang].h)}</h2>${branchSeo[page.key][lang].ps.map((p) => `<p>${esc(p)}</p>`).join('')}</div></section>` : ''}
 ${c.areaP ? `<section class="sec sec-tight"><div class="wrap narrow"><p class="area">${esc(c.areaP)}</p></div></section>` : ''}
 <section class="sec"><div class="wrap"><h2>${esc(c.servicesH)}</h2><p class="muted">${esc(c.servicesLead)}</p><ul class="svc-list">${svcList}</ul></div></section>
 ${galleryBlock(lang, mix, { per: 1, limit: 8, heading: t.ourWork })}
@@ -364,7 +372,8 @@ function head(lang, page, c) {
 <link rel="icon" type="image/png" sizes="32x32" href="${asset('img/favicon-32.png')}">
 <link rel="apple-touch-icon" href="${asset('img/apple-touch-icon.png')}">
 <link rel="manifest" href="${BASE}/site.webmanifest">
-${lang === 'ar' ? `<link rel="preload" href="${asset('fonts/amiri-regular.woff')}" as="font" type="font/woff" crossorigin>\n<link rel="preload" href="${asset('fonts/amiri-bold.woff')}" as="font" type="font/woff" crossorigin>` : `<link rel="preload" href="${asset('fonts/dm-serif-text.woff')}" as="font" type="font/woff" crossorigin>\n<link rel="preload" href="${asset('fonts/dm-serif-display.woff')}" as="font" type="font/woff" crossorigin>`}
+<link rel="preload" href="${asset('fonts/plex-arabic-regular.woff')}" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="${asset('fonts/plex-arabic-semibold.woff')}" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="${asset('css/site.css')}?v=${CSS_V}">
 ${jsonLd(lang, page)}`;
 }
