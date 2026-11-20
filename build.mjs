@@ -7,6 +7,8 @@ import { SITE_URL, company, branches } from './src/config.mjs';
 import { services, ui as ui0, pages } from './src/content.mjs';
 import { checklists, extraUi, aboutPage, guidePage } from './src/content2.mjs';
 import { arTitles, seoExtra, branchSeo } from './src/seo.mjs';
+import { extra } from './src/services-extra.mjs';
+for (const e of extra) { services.push(e.svc); checklists[e.svc.slug] = e.check; seoExtra[e.svc.slug] = e.seo; arTitles[e.svc.slug] = e.arTitle; }
 for (const s of services) if (arTitles[s.slug]) s.ar.title = arTitles[s.slug];
 
 const ui = { ar: { ...ui0.ar, ...extraUi.ar, nav: { ...ui0.ar.nav, ...extraUi.ar.nav } }, en: { ...ui0.en, ...extraUi.en, nav: { ...ui0.en.nav, ...extraUi.en.nav } } };

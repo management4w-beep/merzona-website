@@ -113,21 +113,21 @@ export const branchSeo = {
   damascus: {
     ar: {
       h: 'ألمنيوم وزجاج لمشروعك في دمشق',
-      ps: ['سواء كان مشروعك فيلا أو شقة أو محلاً أو مكتباً، يمكنك طلب شبابيك وأبواب ألمنيوم، أو واجهة زجاجية كيرتن وول، أو درابزين ألمنيوم صب أو زجاج، أو كبائن شاور، أو بيرغولا ومظلات، أو مرايا وزجاجاً معشّقاً، من فرعنا في المزة.', 'نتولى التصميم والتوريد والتركيب، ونخدم دمشق وريفها وباقي المحافظات السورية. أرسل صورة المكان والقياسات عبر واتساب لنعطيك عرض السعر.'],
+      ps: ['سواء كان مشروعك فيلا أو شقة أو محلاً أو مكتباً، يمكنك طلب شبابيك وأبواب ألمنيوم، أو واجهة زجاجية كيرتن وول، أو درابزين ألمنيوم صب أو زجاج، أو كبائن شاور، أو بيرغولا ومظلات، أو مرايا وزجاجاً معشّقاً، قواطع وأبواب زجاج، واجهات محلات، كلادينغ، مطابخ ألمنيوم، أو صيانة، من فرعنا في المزة.', 'نتولى التصميم والتوريد والتركيب، ونخدم دمشق وريفها وباقي المحافظات السورية. أرسل صورة المكان والقياسات عبر واتساب لنعطيك عرض السعر.'],
     },
     en: {
       h: 'Aluminum and glass for your project in Damascus',
-      ps: ['Whether your project is a villa, apartment, shop or office, you can order aluminum windows and doors, a curtain wall glass facade, cast aluminum or glass railings, shower cabins, pergolas and shades, mirrors or stained glass from our Mazzeh branch.', 'We handle design, supply and installation, and serve Damascus, its countryside and the other Syrian governorates. Send a photo of the place and the sizes on WhatsApp and we will give you a quote.'],
+      ps: ['Whether your project is a villa, apartment, shop or office, you can order aluminum windows and doors, a curtain wall glass facade, cast aluminum or glass railings, shower cabins, pergolas and shades, mirrors, stained glass, glass partitions and doors, shopfronts, cladding, aluminum kitchens or maintenance from our Mazzeh branch.', 'We handle design, supply and installation, and serve Damascus, its countryside and the other Syrian governorates. Send a photo of the place and the sizes on WhatsApp and we will give you a quote.'],
     },
   },
   uae: {
     ar: {
       h: 'ألمنيوم وزجاج لمشروعك في الإمارات',
-      ps: ['من فرعنا في الإمارات (دبي والشارقة) نخدم الإمارات كلها: شبابيك وأبواب ألمنيوم، أنظمة سحّاب وفولدينغ، واجهات كيرتن وول، درابزين ألمنيوم مصبوب وزجاج، كبائن شاور، بيرغولا ومظلات، مجالس زجاج وقباب.', 'أرسل لنا صورة المكان والقياسات عبر واتساب ونرد عليك بعرض السعر.'],
+      ps: ['من فرعنا في الإمارات (دبي والشارقة) نخدم الإمارات كلها: شبابيك وأبواب ألمنيوم، أنظمة سحّاب وفولدينغ، واجهات كيرتن وول، درابزين ألمنيوم مصبوب وزجاج، كبائن شاور، بيرغولا ومظلات، مجالس زجاج وقباب، قواطع زجاج، واجهات محلات، كلادينغ، مطابخ ألمنيوم وصيانة.', 'أرسل لنا صورة المكان والقياسات عبر واتساب ونرد عليك بعرض السعر.'],
     },
     en: {
       h: 'Aluminum and glass for your project in the UAE',
-      ps: ['From our UAE branch (Dubai and Sharjah) we serve all of the UAE: aluminum windows and doors, sliding and folding systems, curtain wall facades, cast aluminum and glass railings, shower cabins, pergolas and shades, glass majlis and domes.', 'Send us a photo of the place and the sizes on WhatsApp and we will reply with a quote.'],
+      ps: ['From our UAE branch (Dubai and Sharjah) we serve all of the UAE: aluminum windows and doors, sliding and folding systems, curtain wall facades, cast aluminum and glass railings, shower cabins, pergolas and shades, glass majlis and domes, glass partitions, shopfronts, cladding, aluminum kitchens and maintenance.', 'Send us a photo of the place and the sizes on WhatsApp and we will reply with a quote.'],
     },
   },
 };
