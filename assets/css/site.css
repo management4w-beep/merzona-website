@@ -1,6 +1,4 @@
-@font-face{font-family:Tajawal;font-weight:400;font-display:swap;src:url(../fonts/tajawal-regular.woff) format("woff")}
-@font-face{font-family:Tajawal;font-weight:700;font-display:swap;src:url(../fonts/tajawal-bold.woff) format("woff")}
-@font-face{font-family:Tajawal;font-weight:900;font-display:swap;src:url(../fonts/tajawal-black.woff) format("woff")}
+@font-face{font-family:"Noto Kufi Arabic";font-weight:100 900;font-display:swap;src:url(../fonts/noto-kufi-arabic.woff) format("woff")}
 
 :root{
   --ink:#0a2233; --ink-2:#12364d; --blue:#0f88cd; --blue-d:#0a6aa3; --glass:#e4f1f9; --alu:#d3dadf;
@@ -9,13 +7,13 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;font-family:Tajawal,"Segoe UI",Tahoma,Arial,sans-serif;font-size:1.05rem;line-height:1.85;color:var(--text);background:#fff}
+body{margin:0;font-family:"Noto Kufi Arabic","Segoe UI",Tahoma,Arial,sans-serif;font-size:1rem;line-height:1.95;color:var(--text);background:#fff}
 [lang=en] body{line-height:1.7}
 img{max-width:100%;height:auto}
 a{color:var(--blue-d);text-underline-offset:.2em}
 h1,h2,h3{line-height:1.3;margin:0 0 .6em;color:var(--ink)}
-h1{font-weight:900;font-size:clamp(2rem,5.2vw,3.5rem)}
-h2{font-weight:900;font-size:clamp(1.5rem,3.2vw,2.15rem)}
+h1{font-weight:800;font-size:clamp(1.75rem,4.6vw,3.1rem)}
+h2{font-weight:800;font-size:clamp(1.35rem,3vw,1.9rem)}
 h3{font-weight:700;font-size:1.2rem}
 p{margin:0 0 1em}
 ul,ol{margin:0;padding:0}
@@ -29,7 +27,7 @@ ul,ol{margin:0;padding:0}
 /* الرأس */
 .hd{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--alu)}
 .hd-in{display:flex;align-items:center;gap:1.2rem;min-height:68px}
-.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink);font-weight:900;font-size:1.35rem;margin-inline-end:auto}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink);font-weight:800;font-size:1.2rem;margin-inline-end:auto}
 .brand img{display:block}
 .nav{display:none;gap:1.6rem}
 .nav a,.m-nav a{color:var(--ink);text-decoration:none;font-weight:700}
@@ -65,7 +63,7 @@ ul,ol{margin:0;padding:0}
 .hero h1{color:#fff;max-width:18ch}
 [lang=en] .hero h1{max-width:20ch}
 .hero .lead{color:#cfe0eb;max-width:58ch}
-.lead{font-size:1.15rem;max-width:62ch}
+.lead{font-size:1.05rem;max-width:62ch}
 .cta-hero{margin-top:1.6rem}
 .panes{position:relative;min-height:240px}
 .pane{position:absolute;display:block;clip-path:polygon(0 6%,100% 0,94% 100%,6% 94%)}
@@ -84,7 +82,7 @@ ul,ol{margin:0;padding:0}
 .sec{padding-block:clamp(2.8rem,6vw,5rem)}
 .sec-alt{background:var(--paper)}
 .phero{background:var(--ink);color:#fff;padding-block:clamp(2rem,5vw,3.6rem)}
-.phero h1{color:#fff;font-size:clamp(1.8rem,4.4vw,3rem);max-width:24ch}
+.phero h1{color:#fff;font-size:clamp(1.6rem,4vw,2.6rem);max-width:24ch}
 .phero .lead{color:#cfe0eb}
 .crumbs{display:flex;flex-wrap:wrap;gap:.45rem;font-size:.92rem;margin-bottom:1rem;color:#9fc2d8}
 .crumbs a{color:#cfe0eb}
@@ -100,13 +98,13 @@ ul,ol{margin:0;padding:0}
 .tile-bg img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
 .tile::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(10,34,51,.88),rgba(10,34,51,0) 62%)}
 .tile:hover .tile-bg img{transform:scale(1.05)}
-.tile-t{padding:1rem 1.1rem;font-weight:900;font-size:1.15rem;line-height:1.35}
+.tile-t{padding:1rem 1.1rem;font-weight:800;font-size:1.02rem;line-height:1.35}
 .tile:focus-visible{outline-offset:2px}
 @media (max-width:719px){.tile:last-child:nth-child(odd){grid-column:span 2}}
 @media (min-width:720px){
   .mosaic{grid-template-columns:repeat(6,1fr);gap:1rem}
   .tile{min-height:210px;grid-column:span 2}.tile.s3{grid-column:span 3;min-height:300px}
-  .tile.s3 .tile-t{font-size:1.5rem}
+  .tile.s3 .tile-t{font-size:1.3rem}
 }
 
 /* الفروع */
