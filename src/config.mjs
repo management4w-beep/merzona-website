@@ -52,7 +52,7 @@ export const branches = {
     geo: null,
     gbpUrl: null,
     mapEmbedUrl: null,
-    areasAr: ['دبي', 'الشارقة'],
-    areasEn: ['Dubai', 'Sharjah'],
+    areasAr: ['الإمارات كلها'],
+    areasEn: ['All of the UAE'],
   },
 };

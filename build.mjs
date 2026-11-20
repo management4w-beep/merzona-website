@@ -287,7 +287,7 @@ const orgId = `${ORIGIN}${BASE}/#organization`;
 const branchId = (key) => `${abs('ar', key === 'sy' ? '/damascus/' : '/uae/')}#branch`;
 function areaList(key, lang) {
   if (key === 'sy') return [{ '@type': 'City', name: lang === 'ar' ? 'دمشق' : 'Damascus' }, { '@type': 'AdministrativeArea', name: lang === 'ar' ? 'ريف دمشق' : 'Rif Dimashq' }, { '@type': 'Country', name: lang === 'ar' ? 'سوريا' : 'Syria' }];
-  return (lang === 'ar' ? branches[key].areasAr : branches[key].areasEn).map((n) => ({ '@type': 'City', name: n }));
+  return [{ '@type': 'Country', name: lang === 'ar' ? 'الإمارات العربية المتحدة' : 'United Arab Emirates' }];
 }
 
 function orgNode(lang) {
