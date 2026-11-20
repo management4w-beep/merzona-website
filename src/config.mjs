@@ -32,7 +32,8 @@ export const branches = {
     district: { ar: 'المزة', en: 'Mazzeh' },   // دمشق، المزة
     streetAddress: null,        // الشارع/المبنى بالتفصيل (لسا ما أعطيتني ياه)
     instagram: 'https://www.instagram.com/merzona.sy',
-    hours: null,                // مثال: ['Mo-Th 09:00-17:00']
+    hours: null,                // صيغة schema.org مع الأيام (الأيام غير محددة بعد)
+    hoursText: { ar: 'من الساعة 10 صباحاً حتى 4 عصراً', en: '10:00 am to 4:00 pm' },
     geo: null,                  // { lat: 33.5, lng: 36.3 }
     gbpUrl: null,               // رابط ملف النشاط على خرائط جوجل (Google Business Profile)
     mapEmbedUrl: null,

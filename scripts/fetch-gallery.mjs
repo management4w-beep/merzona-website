@@ -31,7 +31,7 @@ try {
     const c = byName[key(name)];
     if (!c) { console.warn('catalog not found:', name); continue; }
     const items = ((await getJson('/public/catalogs/' + encodeURIComponent(c.id))).items || []).slice(0, MAX_PER_CAT);
-    const files = [];
+    const files = [], ids = [];
     const dir = path.join(RAW, slug(name));
     fs.mkdirSync(dir, { recursive: true });
     for (const [i, it] of items.entries()) {
@@ -40,10 +40,10 @@ try {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         const f = `${i + 1}.img`;
         fs.writeFileSync(path.join(dir, f), Buffer.from(await r.arrayBuffer()));
-        files.push(f);
+        files.push(f); ids.push(it.id);
       } catch (e) { console.warn('skip image', name, i + 1, e.message); }
     }
-    index[key(name)] = { name: c.name, slug: slug(name), files };
+    index[key(name)] = { name: c.name, slug: slug(name), files, ids };
     console.log(name, 'raw', files.length);
   }
   fs.writeFileSync(path.join(RAW, 'index.json'), JSON.stringify(index));

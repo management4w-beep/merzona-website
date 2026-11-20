@@ -70,10 +70,14 @@ def main():
     index = json.load(open(idx_path))
     shutil.rmtree(OUT, ignore_errors=True); os.makedirs(OUT)
     manifest = {}
+    try: EXC = set(json.load(open(os.path.join(ROOT, 'config', 'photo-exclude.json'))))
+    except Exception: EXC = set()
     for key, cat in index.items():
         cands = []
         drop = {'open': 0, 'small': 0, 'ratio': 0, 'blur': 0, 'dup': 0}
-        for f in cat['files']:
+        ids = cat.get('ids') or [None] * len(cat['files'])
+        for f, pid in zip(cat['files'], ids):
+            if pid and pid in EXC: drop['open'] += 1; continue
             try:
                 im = ImageOps.exif_transpose(Image.open(os.path.join(RAW, cat['slug'], f))).convert('RGB')
             except Exception:
@@ -82,7 +86,7 @@ def main():
             w, h = im.size
             if max(w, h) < MIN_LONG: drop['small'] += 1; continue
             if not (0.55 <= w / h <= 2.3): drop['ratio'] += 1; continue
-            cands.append({'im': im, 'sharp': sharpness(im), 'w': w, 'h': h, 'src': f})
+            cands.append({'im': im, 'sharp': sharpness(im), 'w': w, 'h': h, 'src': f, 'id': pid})
         if not cands:
             print(f'{cat["name"]}: nothing usable', drop); continue
         sharps = sorted(c['sharp'] for c in cands)
@@ -102,7 +106,7 @@ def main():
                 o = im.copy(); o.thumbnail((size, size), Image.LANCZOS)
                 if not suffix: dims = o.size
                 o.save(os.path.join(OUT, f'{cat["slug"]}-{n}{suffix}.webp'), 'WEBP', quality=82, method=6)
-            items.append({'file': f'{cat["slug"]}-{n}.webp', 'thumb': f'{cat["slug"]}-{n}-t.webp', 'w': dims[0], 'h': dims[1]})
+            items.append({'file': f'{cat["slug"]}-{n}.webp', 'thumb': f'{cat["slug"]}-{n}-t.webp', 'w': dims[0], 'h': dims[1], 'id': c.get('id')})
         manifest[key] = {'name': cat['name'], 'items': items}
         print(f'{cat["name"]}: raw {len(cat["files"])} -> kept {len(items)}; dropped {drop}')
     os.makedirs(os.path.join(ROOT, 'data'), exist_ok=True)

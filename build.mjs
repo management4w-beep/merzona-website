@@ -149,6 +149,7 @@ function branchBlock(lang, key) {
   else if (b.streetAddress) rows.push([t.addressLabel, b.streetAddress]);
   rows.push([t.areasLabel, areas]);
   if (b.hours) rows.push([lang === 'ar' ? 'ساعات الدوام' : 'Hours', b.hours.join(' | ')]);
+  else if (b.hoursText) rows.push([lang === 'ar' ? 'ساعات الدوام' : 'Hours', b.hoursText[lang]]);
   const dl = rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
   const gbp = b.gbpUrl ? `<a href="${esc(b.gbpUrl)}" rel="noopener">${lang === 'ar' ? 'الموقع على خرائط جوجل' : 'Find us on Google Maps'}</a> ` : '';
   return `<article class="branch"><h3><a href="${href(lang, key === 'sy' ? '/damascus/' : '/uae/')}">${esc(name)}</a></h3>
@@ -424,6 +425,17 @@ function render404() {
 `;
 }
 
+
+// صفحة مراجعة الصور (مخفية، noindex، خارج الـsitemap): اضغط على الصورة لاستبعادها ثم انسخ القائمة
+function renderReview() {
+  const sections = Object.entries(gallery).map(([k, c]) => `<h2>${esc(c.name)}</h2><div class="rv">${(c.items || []).map((it) => `<figure data-id="${esc(it.id || '')}"><img src="${photoUrl(it.thumb)}" alt="" loading="lazy"><figcaption>${esc(String(it.id || '').slice(0, 8))}</figcaption></figure>`).join('')}</div>`).join('');
+  return `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>مراجعة الصور</title>
+<style>body{font-family:system-ui,Tahoma,sans-serif;margin:0;padding:1rem 1rem 6rem;background:#fff;color:#000}h1{font-size:1.3rem}h2{font-size:1.1rem;margin:1.5rem 0 .5rem}.rv{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.5rem}figure{margin:0;position:relative;cursor:pointer;border:3px solid transparent}figure img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}figcaption{font-size:.7rem;color:#555;text-align:center}figure.x{border-color:#d00}figure.x img{opacity:.35}figure.x:after{content:"✕";position:absolute;top:.2rem;inset-inline-start:.4rem;color:#d00;font-size:1.6rem;font-weight:700}#bar{position:fixed;inset-inline:0;bottom:0;background:#000;color:#fff;padding:.7rem 1rem;display:flex;gap:.7rem;align-items:center}#bar button{background:#3e9fd7;border:0;padding:.6rem 1rem;font-size:1rem;font-weight:700;border-radius:8px}</style></head>
+<body><h1>اضغط على أي صورة تبدو خارج الدول العربية أو غير مناسبة لاستبعادها</h1>${sections}
+<div id="bar"><span id="n">0</span> صورة مستبعدة <button id="cp" type="button">نسخ القائمة</button></div>
+<script>var s=new Set();document.querySelectorAll('figure').forEach(function(f){f.onclick=function(){var i=f.dataset.id;if(!i)return;f.classList.toggle('x');f.classList.contains('x')?s.add(i):s.delete(i);document.getElementById('n').textContent=s.size}});document.getElementById('cp').onclick=function(){var t=JSON.stringify(Array.from(s));(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){alert('تم النسخ، الصقها في رسالتك')},function(){prompt('انسخ القائمة',t)})}</script></body></html>`;
+}
+
 // ---------- الكتابة ----------
 function write(rel, data) {
   const f = path.join(DIST, rel);
@@ -445,6 +457,7 @@ for (const page of PAGES) {
   }
 }
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapUrls.join('\n')}\n</urlset>\n`);
+write('review/index.html', renderReview());
 write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}${BASE}/sitemap.xml\n`);
 write('404.html', render404());
 write('.nojekyll', '');
