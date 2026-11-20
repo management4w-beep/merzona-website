@@ -2,3 +2,5 @@ dist/
 node_modules/
 data/gallery.json
 assets/gallery/
+.cache/
+__pycache__/

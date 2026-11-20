@@ -18,7 +18,7 @@ export const company = {
   email: 'info@merzona.com',
   // ===== معلومات ناقصة (null = ما بتنعرض) =====
   foundingYear: null,     // سنة التأسيس
-  sameAs: [],             // روابط فيسبوك / انستغرام / لينكدإن ... الخ
+  sameAs: ['https://www.instagram.com/merzona.sy', 'https://www.instagram.com/merzona.ae'],
 };
 
 export const branches = {
@@ -29,13 +29,15 @@ export const branches = {
     phoneDisplay: '+963 939 919 670',
     country: 'SY',
     // معلومات ناقصة:
-    streetAddress: null,        // عنوان الفرع بالتفصيل
+    district: { ar: 'المزة', en: 'Mazzeh' },   // دمشق، المزة
+    streetAddress: null,        // الشارع/المبنى بالتفصيل (لسا ما أعطيتني ياه)
+    instagram: 'https://www.instagram.com/merzona.sy',
     hours: null,                // مثال: ['Mo-Th 09:00-17:00']
     geo: null,                  // { lat: 33.5, lng: 36.3 }
     gbpUrl: null,               // رابط ملف النشاط على خرائط جوجل (Google Business Profile)
     mapEmbedUrl: null,
-    areasAr: ['دمشق'],          // مناطق الخدمة (أكّدلي إذا بتخدموا ريف دمشق وغيره)
-    areasEn: ['Damascus'],
+    areasAr: ['دمشق', 'ريف دمشق', 'باقي المحافظات السورية'],
+    areasEn: ['Damascus', 'Damascus countryside', 'the other Syrian governorates'],
   },
   ae: {
     key: 'ae',
@@ -43,7 +45,9 @@ export const branches = {
     tel: '+971508471158',
     phoneDisplay: '+971 50 847 1158',
     country: 'AE',
+    district: null,
     streetAddress: null,
+    instagram: 'https://www.instagram.com/merzona.ae',
     hours: null,
     geo: null,
     gbpUrl: null,

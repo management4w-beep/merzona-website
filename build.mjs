@@ -3,8 +3,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { SITE_URL, API_BASE, company, branches } from './src/config.mjs';
-import { services, ui, pages } from './src/content.mjs';
+import { SITE_URL, company, branches } from './src/config.mjs';
+import { services, ui as ui0, pages } from './src/content.mjs';
+import { checklists, extraUi, aboutPage, guidePage } from './src/content2.mjs';
+
+const ui = { ar: { ...ui0.ar, ...extraUi.ar, nav: { ...ui0.ar.nav, ...extraUi.ar.nav } }, en: { ...ui0.en, ...extraUi.en, nav: { ...ui0.en.nav, ...extraUi.en.nav } } };
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(ROOT, 'dist');
@@ -38,6 +41,8 @@ const PAGES = [
   { key: 'home', path: '/', copy: pages.home, wa: null },
   { key: 'servicesIndex', path: '/services/', copy: pages.servicesIndex, wa: null },
   ...services.map((s) => ({ key: 'svc', svc: s, path: `/services/${s.slug}/`, copy: s, wa: null })),
+  { key: 'about', path: '/about/', copy: aboutPage, wa: null },
+  { key: 'guide', path: '/guide/', copy: guidePage, wa: null },
   { key: 'damascus', path: '/damascus/', copy: pages.damascus, wa: 'sy' },
   { key: 'uae', path: '/uae/', copy: pages.uae, wa: 'ae' },
   { key: 'contact', path: '/contact/', copy: pages.contact, wa: null },
@@ -48,6 +53,8 @@ function navLinks(lang, activeKey) {
   const t = ui[lang].nav;
   const items = [
     ['servicesIndex', '/services/', t.services],
+    ['about', '/about/', t.about],
+    ['guide', '/guide/', t.guide],
     ['damascus', '/damascus/', t.damascus],
     ['uae', '/uae/', t.uae],
     ['contact', '/contact/', t.contact],
@@ -81,19 +88,6 @@ function fab(lang, page) {
 <div class="fab-panel"><a href="${waLink(branches.sy, msg)}" rel="noopener">${esc(t.waSy)}</a><a href="${waLink(branches.ae, msg)}" rel="noopener">${esc(t.waAe)}</a></div></details>`;
 }
 
-function footer(lang) {
-  const t = ui[lang];
-  const sy = branches.sy, ae = branches.ae;
-  return `<footer class="ft"><div class="wrap ft-in">
-<div class="ft-brand"><img src="${asset('img/logo-light.webp')}" width="120" height="78" alt="${esc(company.fullEn)}" loading="lazy"><p>${esc(t.footerBlurb)}</p></div>
-<div><h2>${esc(t.nav.services)}</h2><ul>${services.map((s) => `<li><a href="${href(lang, `/services/${s.slug}/`)}">${esc(s[lang].name)}</a></li>`).join('')}</ul></div>
-<div><h2>${esc(t.nav.contact)}</h2>
-<p><a href="${href(lang, '/damascus/')}">${esc(t.branchSy)}</a><br><a dir="ltr" href="tel:${sy.tel}">${sy.phoneDisplay}</a></p>
-<p><a href="${href(lang, '/uae/')}">${esc(t.branchAe)}</a><br><a dir="ltr" href="tel:${ae.tel}">${ae.phoneDisplay}</a></p>
-<p><a dir="ltr" href="mailto:${company.email}">${esc(company.email)}</a></p></div>
-</div><div class="wrap ft-bot">© ${YEAR} ${esc(lang === 'ar' ? company.fullAr : company.fullEn)}. ${esc(t.rights)}.</div></footer>`;
-}
-
 // ---------- مكوّنات المحتوى ----------
 function ctaButtons(lang, msgWhat, cls = '') {
   const t = ui[lang];
@@ -101,57 +95,63 @@ function ctaButtons(lang, msgWhat, cls = '') {
   return `<div class="cta ${cls}"><a class="btn btn-wa" href="${waLink(branches.sy, msg)}" rel="noopener">${WA_ICON}${esc(t.waSy)}</a><a class="btn btn-wa" href="${waLink(branches.ae, msg)}" rel="noopener">${WA_ICON}${esc(t.waAe)}</a></div>`;
 }
 
-function catKey(name) { return String(name).trim().toLowerCase(); }
-function staticCover(cats) {
-  for (const c of cats) { const g = gallery[catKey(c)]; if (g && g.items && g.items[0]) return g.items[0].file; }
-  return null;
-}
+const catKey = (name) => String(name).trim().toLowerCase();
+const catLabel = (lang, cat) => { const s = services.find((x) => x.cats.some((c) => catKey(c) === catKey(cat))); return s ? s[lang].name : ''; };
+const photos = (cat) => gallery[catKey(cat)]?.items || [];
+const photoUrl = (f) => asset('gallery/' + f);
+function coverOf(cats) { for (const c of cats) { const p = photos(c)[0]; if (p) return p; } return null; }
 
 function tile(lang, s, span) {
-  const cov = staticCover(s.cats);
-  const bg = cov ? `<img src="${asset('gallery/' + cov)}" alt="" loading="lazy" decoding="async">` : '';
-  const cat = s.cats[0] ? ` data-cat="${esc(s.cats[0])}"` : '';
-  return `<a class="tile s${span}${cov ? ' has-img' : ''}" href="${href(lang, `/services/${s.slug}/`)}"><span class="tile-bg"${cov ? '' : cat}>${bg}</span><span class="tile-t">${esc(s[lang].name)}</span></a>`;
+  const cov = coverOf(s.cats);
+  const img = cov ? `<img src="${photoUrl(cov.thumb)}" width="${cov.w}" height="${cov.h}" alt="" loading="lazy" decoding="async">` : '';
+  return `<a class="tile s${span}${cov ? ' has-img' : ''}" href="${href(lang, `/services/${s.slug}/`)}"><span class="tile-bg">${img}</span><span class="tile-t">${esc(s[lang].name)}</span></a>`;
 }
 function mosaic(lang) {
   return `<div class="mosaic">${services.map((s, i) => tile(lang, s, i < 2 ? 3 : 2)).join('')}</div>`;
 }
 
-function galleryBlock(lang, cats, { per = 12, limit = 12, heading } = {}) {
+function galleryBlock(lang, cats, { per = 8, limit = 12, heading } = {}) {
   const t = ui[lang];
-  const have = cats.filter((c) => gallery[catKey(c)]?.items?.length);
-  let inner;
-  if (have.length === cats.length && have.length) {
-    let n = 0;
-    const figs = [];
-    for (const c of have) {
-      for (const it of gallery[catKey(c)].items.slice(0, per)) {
-        if (n++ >= limit) break;
-        const f = asset('gallery/' + it.file);
-        figs.push(`<figure><button type="button" class="g-it" data-full="${f}" aria-label="${esc(heading || t.ourWork)}"><img src="${f}" alt="${esc((heading || t.ourWork) + ' - ' + company[lang === 'ar' ? 'nameAr' : 'nameEn'])}" loading="lazy" decoding="async"></button></figure>`);
-      }
+  const figs = [];
+  let n = 0;
+  for (const c of cats) {
+    for (const it of photos(c).slice(0, per)) {
+      if (n >= limit) break;
+      n++;
+      const label = `${catLabel(lang, c) || t.ourWork} - ${lang === 'ar' ? company.nameAr : company.nameEn}`;
+      figs.push(`<figure><button type="button" class="g-it" data-full="${photoUrl(it.file)}" aria-label="${esc(label)}"><img src="${photoUrl(it.thumb)}" width="${it.w}" height="${it.h}" alt="${esc(label)}" loading="lazy" decoding="async"></button></figure>`);
     }
-    inner = `<div class="gal" data-static="1">${figs.join('')}</div>`;
-  } else {
-    inner = `<div class="gal" data-cats='${esc(JSON.stringify(cats))}' data-per="${per}" data-limit="${limit}" data-empty="${esc(t.galleryEmpty)}" aria-busy="true"></div>`;
   }
-  return `<section class="sec sec-alt" aria-labelledby="gal-h"><div class="wrap"><h2 id="gal-h">${esc(heading || t.ourWork)}</h2><p class="muted">${esc(t.galleryNote)}</p>${inner}</div></section>`;
+  if (!figs.length) return '';
+  return `<section class="sec sec-alt" aria-labelledby="gal-h"><div class="wrap"><h2 id="gal-h">${esc(heading || t.ourWork)}</h2><p class="muted">${esc(t.galleryNote)}</p><div class="gal">${figs.join('')}</div></div></section>`;
 }
 
-function branchBlock(lang, key, { full = true } = {}) {
+function igLink(lang, key, cls = '') {
+  const b = branches[key];
+  const label = `${t_(lang).instagram} ${key === 'sy' ? (lang === 'ar' ? 'سوريا' : 'Syria') : (lang === 'ar' ? 'الإمارات' : 'UAE')}`;
+  return `<a${cls ? ` class="${cls}"` : ''} href="${b.instagram}" rel="noopener me" target="_blank">${esc(label)}</a>`;
+}
+const t_ = (lang) => ui[lang];
+
+function branchBlock(lang, key) {
   const t = ui[lang];
   const b = branches[key];
   const name = key === 'sy' ? t.branchSy : t.branchAe;
   const areas = (lang === 'ar' ? b.areasAr : b.areasEn).join(lang === 'ar' ? '، ' : ', ');
   const wa = waLink(b, t.waMsgGeneral);
-  const extra = [];
-  if (b.streetAddress) extra.push(`<p>${esc(b.streetAddress)}</p>`);
-  if (b.hours) extra.push(`<p dir="ltr">${esc(b.hours.join(' | '))}</p>`);
-  if (b.gbpUrl) extra.push(`<p><a href="${esc(b.gbpUrl)}" rel="noopener">${lang === 'ar' ? 'على خرائط جوجل' : 'On Google Maps'}</a></p>`);
+  const rows = [];
+  const dist = b.district ? b.district[lang] : null;
+  if (key === 'sy') rows.push([t.addressLabel, lang === 'ar' ? `دمشق، ${dist}${b.streetAddress ? '، ' + b.streetAddress : ''}` : `${dist ? dist + ', ' : ''}Damascus${b.streetAddress ? ', ' + b.streetAddress : ''}`]);
+  else if (b.streetAddress) rows.push([t.addressLabel, b.streetAddress]);
+  rows.push([t.areasLabel, areas]);
+  if (b.hours) rows.push([lang === 'ar' ? 'ساعات الدوام' : 'Hours', b.hours.join(' | ')]);
+  const dl = rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
+  const gbp = b.gbpUrl ? `<a href="${esc(b.gbpUrl)}" rel="noopener">${lang === 'ar' ? 'الموقع على خرائط جوجل' : 'Find us on Google Maps'}</a> ` : '';
   return `<article class="branch"><h3><a href="${href(lang, key === 'sy' ? '/damascus/' : '/uae/')}">${esc(name)}</a></h3>
-<p class="muted">${esc(areas)}</p>${extra.join('')}
+<dl class="facts">${dl}</dl>
 <p class="phone"><a dir="ltr" href="tel:${b.tel}">${b.phoneDisplay}</a></p>
-<div class="cta"><a class="btn btn-wa" href="${wa}" rel="noopener">${WA_ICON}${esc(t.whatsapp)}</a><a class="btn btn-line" href="tel:${b.tel}">${PHONE_ICON}${esc(key === 'sy' ? t.callSy : t.callAe)}</a></div></article>`;
+<div class="cta"><a class="btn btn-wa" href="${wa}" rel="noopener">${WA_ICON}${esc(t.whatsapp)}</a><a class="btn btn-line" href="tel:${b.tel}">${PHONE_ICON}${esc(key === 'sy' ? t.callSy : t.callAe)}</a></div>
+<p class="links">${gbp}${igLink(lang, key)}</p></article>`;
 }
 
 function faqBlock(lang, heading, items) {
@@ -168,7 +168,7 @@ function crumbTrail(lang, page) {
   if (page.key === 'svc') return [[t.allServices, '/services/'], [page.copy[lang].name, page.path]];
   if (page.key === 'servicesIndex') return [[t.allServices, page.path]];
   if (page.key === 'home') return [];
-  const label = page.key === 'damascus' ? t.nav.damascus : page.key === 'uae' ? t.nav.uae : t.nav.contact;
+  const label = { damascus: t.nav.damascus, uae: t.nav.uae, contact: t.nav.contact, about: t.breadcrumbAbout, guide: t.breadcrumbGuide }[page.key];
   return [[label, page.path]];
 }
 
@@ -179,37 +179,63 @@ function pageWhat(lang, page) {
   return null;
 }
 
-function panes() {
+function heroVisual() {
+  const prefer = ['glass handrail', 'curtain wall design', 'cast aluminum handrails', 'pergolas', 'glass majlis'];
+  for (const c of prefer) {
+    const p = photos(c)[0];
+    if (p) return `<div class="hero-v"><i class="pane p1" aria-hidden="true"></i><div class="hero-photo"><img src="${photoUrl(p.file)}" width="${p.w}" height="${p.h}" alt="" fetchpriority="high"></div></div>`;
+  }
   return `<div class="panes" aria-hidden="true"><i class="pane p1"></i><i class="pane p2"></i><i class="pane p3"></i></div>`;
 }
 
-// ---------- أجسام الصفحات ----------
-function bodyHome(lang) {
-  const t = ui[lang], c = pages.home[lang];
-  return `<section class="hero"><div class="wrap hero-in"><div class="hero-t"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p>${ctaButtons(lang, null, 'cta-hero')}</div>${panes()}</div></section>
-<section class="sec" aria-labelledby="svc-h"><div class="wrap"><h2 id="svc-h">${esc(c.servicesH)}</h2><p class="muted">${esc(c.servicesLead)}</p>${mosaic(lang)}</div></section>
-<section class="sec sec-alt" aria-labelledby="br-h"><div class="wrap"><h2 id="br-h">${esc(c.branchesH)}</h2><div class="branches">${branchBlock(lang, 'sy')}${branchBlock(lang, 'ae')}</div></div></section>
-<section class="sec" aria-labelledby="st-h"><div class="wrap"><h2 id="st-h">${esc(c.stepsH)}</h2><ol class="steps">${c.steps.map(([h, p]) => `<li><h3>${esc(h)}</h3><p>${esc(p)}</p></li>`).join('')}</ol></div></section>
-${ctaBand(lang, c.ctaH, c.ctaP)}`;
+function footer(lang) {
+  const t = ui[lang];
+  const sy = branches.sy, ae = branches.ae;
+  const nameOf = (s) => s[lang].name;
+  return `<footer class="ft"><div class="wrap ft-in">
+<div class="ft-brand"><img src="${asset('img/logo-light.webp')}" width="120" height="78" alt="${esc(company.fullEn)}" loading="lazy"><p>${esc(t.footerBlurb)}</p><p class="links">${igLink(lang, 'sy')}<br>${igLink(lang, 'ae')}</p></div>
+<div><h2>${esc(t.nav.services)}</h2><ul>${services.map((s) => `<li><a href="${href(lang, `/services/${s.slug}/`)}">${esc(nameOf(s))}</a></li>`).join('')}</ul></div>
+<div><h2>${esc(t.nav.contact)}</h2>
+<p><a href="${href(lang, '/damascus/')}">${esc(t.branchSy)}</a><br><a dir="ltr" href="tel:${sy.tel}">${sy.phoneDisplay}</a></p>
+<p><a href="${href(lang, '/uae/')}">${esc(t.branchAe)}</a><br><a dir="ltr" href="tel:${ae.tel}">${ae.phoneDisplay}</a></p>
+<p><a dir="ltr" href="mailto:${company.email}">${esc(company.email)}</a></p>
+<p><a href="${href(lang, '/about/')}">${esc(t.nav.about)}</a><br><a href="${href(lang, '/guide/')}">${esc(t.nav.guide)}</a></p></div>
+</div><div class="wrap ft-bot">© ${YEAR} ${esc(lang === 'ar' ? company.fullAr : company.fullEn)}. ${esc(t.rights)}.</div></footer>`;
 }
 
+// ---------- أجسام الصفحات ----------
 function ctaBand(lang, h, p, what = null) {
   return `<section class="band"><div class="wrap band-in"><div><h2>${esc(h)}</h2><p>${esc(p)}</p></div>${ctaButtons(lang, what)}</div></section>`;
 }
+function phero(lang, page, c, extra = '') {
+  return `<section class="phero"><div class="wrap">${crumbs(lang, crumbTrail(lang, page))}<h1>${esc(c.h1 || c.name)}</h1><p class="lead">${esc(c.lead)}</p>${extra}</div></section>`;
+}
+
+function bodyHome(lang) {
+  const t = ui[lang], c = pages.home[lang];
+  return `<section class="hero"><div class="wrap hero-in"><div class="hero-t"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p>${ctaButtons(lang, null, 'cta-hero')}</div>${heroVisual()}</div></section>
+<section class="sec" aria-labelledby="svc-h"><div class="wrap"><h2 id="svc-h">${esc(c.servicesH)}</h2><p class="muted">${esc(c.servicesLead)}</p>${mosaic(lang)}</div></section>
+<section class="sec sec-alt" aria-labelledby="ab-h"><div class="wrap two"><div><h2 id="ab-h">${esc(t.homeAboutH)}</h2><p>${esc(t.homeAboutP)}</p><p><a class="more" href="${href(lang, '/about/')}">${esc(t.moreAbout)}</a></p></div><div><h2>${esc(t.homeGuideH)}</h2><p>${esc(t.homeGuideP)}</p><p><a class="more" href="${href(lang, '/guide/')}">${esc(t.readGuide)}</a></p></div></div></section>
+<section class="sec" aria-labelledby="br-h"><div class="wrap"><h2 id="br-h">${esc(c.branchesH)}</h2><div class="branches">${branchBlock(lang, 'sy')}${branchBlock(lang, 'ae')}</div></div></section>
+<section class="sec sec-alt" aria-labelledby="st-h"><div class="wrap"><h2 id="st-h">${esc(c.stepsH)}</h2><ol class="steps">${c.steps.map(([h, p]) => `<li><h3>${esc(h)}</h3><p>${esc(p)}</p></li>`).join('')}</ol></div></section>
+${ctaBand(lang, c.ctaH, c.ctaP)}`;
+}
 
 function bodyServicesIndex(lang) {
-  const c = pages.servicesIndex[lang], t = ui[lang];
-  return `<section class="phero"><div class="wrap">${crumbs(lang, crumbTrail(lang, { key: 'servicesIndex', path: '/services/' }))}<h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p></div></section>
+  const c = pages.servicesIndex[lang];
+  return `${phero(lang, { key: 'servicesIndex', path: '/services/' }, c)}
 <section class="sec"><div class="wrap">${mosaic(lang)}</div></section>
 ${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP)}`;
 }
 
 function bodyService(lang, page) {
   const t = ui[lang], s = page.svc, c = s[lang];
-  const related = services.filter((x) => x.slug !== s.slug).slice(0, 6);
-  return `<section class="phero"><div class="wrap">${crumbs(lang, crumbTrail(lang, page))}<h1>${esc(c.name)}</h1><p class="lead">${esc(c.lead)}</p>${ctaButtons(lang, c.name, 'cta-hero')}</div></section>
+  const related = services.filter((x) => x.slug !== s.slug).slice(0, 7);
+  const cl = checklists[s.slug][lang];
+  return `${phero(lang, page, c, ctaButtons(lang, c.name, 'cta-hero'))}
 <section class="sec"><div class="wrap two"><div><h2>${esc(t.features)}</h2><ul class="ticks">${c.features.map((f) => `<li>${esc(f)}</li>`).join('')}</ul></div><div><h2>${esc(t.uses)}</h2><ul class="plain">${c.uses.map((f) => `<li>${esc(f)}</li>`).join('')}</ul></div></div></section>
-${s.cats.length ? galleryBlock(lang, s.cats, { per: 12, limit: 12, heading: `${t.ourWork}: ${c.name}` }) : ''}
+${galleryBlock(lang, s.cats, { per: 8, limit: 8, heading: `${t.ourWork}: ${c.name}` })}
+<section class="sec"><div class="wrap two"><div><h2>${esc(t.checklistH)}</h2><p>${esc(t.checklistP)}</p></div><div><ul class="ticks">${cl.map((f) => `<li>${esc(f)}</li>`).join('')}</ul></div></div></section>
 ${faqBlock(lang, t.faq, t.faqSvc(c.name))}
 <section class="sec sec-alt"><div class="wrap"><h2>${esc(t.related)}</h2><p class="chips">${related.map((x) => `<a href="${href(lang, `/services/${x.slug}/`)}">${esc(x[lang].name)}</a>`).join('')}<a class="chip-all" href="${href(lang, '/services/')}">${esc(t.allServices)}</a></p></div></section>
 ${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP, c.name)}`;
@@ -220,26 +246,49 @@ function bodyBranch(lang, page) {
   const b = branches[key];
   const msg = t.waMsg(pageWhat(lang, page));
   const svcList = services.map((s) => `<li><a href="${href(lang, `/services/${s.slug}/`)}">${esc(s[lang].name)}</a><p>${esc(s[lang].lead)}</p></li>`).join('');
-  const mix = ['door', 'cast aluminum handrails', 'curtain wall design', 'glass handrail', 'showers', 'pergolas'];
-  return `<section class="phero"><div class="wrap">${crumbs(lang, crumbTrail(lang, page))}<h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p>
-<div class="cta cta-hero"><a class="btn btn-wa" href="${waLink(b, msg)}" rel="noopener">${WA_ICON}${esc(key === 'sy' ? t.waSy : t.waAe)}</a><a class="btn btn-line-d" href="tel:${b.tel}">${PHONE_ICON}<span dir="ltr">${b.phoneDisplay}</span></a></div></div></section>
+  const mix = ['door', 'cast aluminum handrails', 'curtain wall design', 'glass handrail', 'showers', 'pergolas', 'sliding', 'glass majlis'];
+  const extra = `<div class="cta cta-hero"><a class="btn btn-wa" href="${waLink(b, msg)}" rel="noopener">${WA_ICON}${esc(key === 'sy' ? t.waSy : t.waAe)}</a><a class="btn btn-line-d" href="tel:${b.tel}">${PHONE_ICON}<span dir="ltr">${b.phoneDisplay}</span></a></div>`;
+  return `${phero(lang, page, c, extra)}
+${c.areaP ? `<section class="sec sec-tight"><div class="wrap narrow"><p class="area">${esc(c.areaP)}</p></div></section>` : ''}
 <section class="sec"><div class="wrap"><h2>${esc(c.servicesH)}</h2><p class="muted">${esc(c.servicesLead)}</p><ul class="svc-list">${svcList}</ul></div></section>
-${galleryBlock(lang, mix, { per: 2, limit: 12, heading: t.ourWork })}
+${galleryBlock(lang, mix, { per: 1, limit: 8, heading: t.ourWork })}
 <section class="sec"><div class="wrap two"><div><h2>${esc(c.contactH)}</h2><p>${esc(c.contactP)}</p></div><div>${branchBlock(lang, key)}</div></div></section>
 ${faqBlock(lang, c.faqH, c.faq)}`;
 }
 
 function bodyContact(lang) {
   const t = ui[lang], c = pages.contact[lang];
-  return `<section class="phero"><div class="wrap">${crumbs(lang, crumbTrail(lang, { key: 'contact', path: '/contact/', copy: pages.contact }))}<h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p></div></section>
+  return `${phero(lang, { key: 'contact', path: '/contact/' }, c)}
 <section class="sec"><div class="wrap"><div class="branches">${branchBlock(lang, 'sy')}${branchBlock(lang, 'ae')}</div>
 <p class="mail"><span>${esc(t.email)}:</span> <a dir="ltr" href="mailto:${company.email}">${esc(company.email)}</a></p></div></section>`;
+}
+
+function bodyAbout(lang) {
+  const c = aboutPage[lang];
+  return `${phero(lang, { key: 'about', path: '/about/' }, c)}
+<section class="sec"><div class="wrap narrow prose">${c.sections.map(([h, ps]) => `<h2>${esc(h)}</h2>${ps.map((p) => `<p>${esc(p)}</p>`).join('')}`).join('')}</div></section>
+<section class="sec sec-alt"><div class="wrap"><h2>${esc(ui[lang].nav.services)}</h2><p class="chips">${services.map((x) => `<a href="${href(lang, `/services/${x.slug}/`)}">${esc(x[lang].name)}</a>`).join('')}</p></div></section>
+${branchesSection(lang)}
+${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP)}`;
+}
+function branchesSection(lang) {
+  return `<section class="sec"><div class="wrap"><h2>${esc(pages.home[lang].branchesH)}</h2><div class="branches">${branchBlock(lang, 'sy')}${branchBlock(lang, 'ae')}</div></div></section>`;
+}
+
+function bodyGuide(lang) {
+  const c = guidePage[lang];
+  return `${phero(lang, { key: 'guide', path: '/guide/' }, c)}
+${c.sections.map(([h, items], i) => `<section class="sec${i % 2 ? ' sec-alt' : ''}"><div class="wrap"><h2>${esc(h)}</h2><dl class="defs">${items.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></div></section>`).join('\n')}
+${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP)}`;
 }
 
 // ---------- JSON-LD ----------
 const orgId = `${ORIGIN}${BASE}/#organization`;
 const branchId = (key) => `${abs('ar', key === 'sy' ? '/damascus/' : '/uae/')}#branch`;
-function areaList(key, lang) { return (lang === 'ar' ? branches[key].areasAr : branches[key].areasEn).map((n) => ({ '@type': 'City', name: n })); }
+function areaList(key, lang) {
+  if (key === 'sy') return [{ '@type': 'City', name: lang === 'ar' ? 'دمشق' : 'Damascus' }, { '@type': 'AdministrativeArea', name: lang === 'ar' ? 'ريف دمشق' : 'Rif Dimashq' }, { '@type': 'Country', name: lang === 'ar' ? 'سوريا' : 'Syria' }];
+  return (lang === 'ar' ? branches[key].areasAr : branches[key].areasEn).map((n) => ({ '@type': 'City', name: n }));
+}
 
 function orgNode(lang) {
   const n = { '@type': 'Organization', '@id': orgId, name: company.nameEn, alternateName: [company.nameAr, company.fullEn, company.fullAr], url: abs('ar', '/'), logo: { '@type': 'ImageObject', url: absAsset('img/logo.webp') }, image: absAsset('img/og-image.jpg'), email: company.email };
@@ -253,12 +302,13 @@ function branchNode(key, lang) {
   const b = branches[key], t = ui[lang];
   const addr = { '@type': 'PostalAddress', addressCountry: b.country };
   if (key === 'sy') addr.addressLocality = lang === 'ar' ? 'دمشق' : 'Damascus';
-  if (b.streetAddress) addr.streetAddress = b.streetAddress;
+  const street = [b.district ? b.district[lang] : null, b.streetAddress].filter(Boolean).join(lang === 'ar' ? '، ' : ', ');
+  if (street) addr.streetAddress = street;
   const n = { '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'], '@id': branchId(key), name: `${lang === 'ar' ? company.fullAr : company.fullEn} - ${key === 'sy' ? (lang === 'ar' ? 'دمشق' : 'Damascus') : (lang === 'ar' ? 'الإمارات' : 'UAE')}`, url: abs(lang, key === 'sy' ? '/damascus/' : '/uae/'), telephone: b.tel, email: company.email, image: absAsset('img/og-image.jpg'), logo: absAsset('img/logo.webp'), address: addr, areaServed: areaList(key, lang), parentOrganization: { '@id': orgId } };
   if (b.geo) n.geo = { '@type': 'GeoCoordinates', latitude: b.geo.lat, longitude: b.geo.lng };
   if (b.hours) n.openingHours = b.hours;
   if (b.gbpUrl) n.hasMap = b.gbpUrl;
-  if (company.sameAs.length) n.sameAs = company.sameAs;
+  n.sameAs = [b.instagram];
   return n;
 }
 function breadcrumbNode(lang, page) {
@@ -280,6 +330,7 @@ function jsonLd(lang, page) {
       const c = page.svc[lang];
       g.push({ '@type': 'Service', '@id': `${abs(lang, page.path)}#service`, name: c.name, serviceType: c.name, description: c.desc, url: abs(lang, page.path), inLanguage: lang, provider: { '@id': orgId }, areaServed: [...areaList('sy', lang), ...areaList('ae', lang)] });
     }
+    if (page.key === 'about') g.push({ '@type': 'AboutPage', url: abs(lang, page.path), name: page.copy[lang].title, about: { '@id': orgId } });
     if (page.key === 'contact') g.push({ '@type': 'ContactPage', url: abs(lang, page.path), name: page.copy[lang].title, isPartOf: { '@id': `${ORIGIN}${BASE}/#website` } });
   }
   return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': g }).replace(/</g, '\\u003c')}</script>`;
@@ -313,7 +364,7 @@ function head(lang, page, c) {
 <link rel="icon" type="image/png" sizes="32x32" href="${asset('img/favicon-32.png')}">
 <link rel="apple-touch-icon" href="${asset('img/apple-touch-icon.png')}">
 <link rel="manifest" href="${BASE}/site.webmanifest">
-<link rel="preload" href="${asset('fonts/noto-kufi-arabic.woff')}" as="font" type="font/woff" crossorigin>
+${lang === 'ar' ? `<link rel="preload" href="${asset('fonts/amiri-regular.woff')}" as="font" type="font/woff" crossorigin>\n<link rel="preload" href="${asset('fonts/amiri-bold.woff')}" as="font" type="font/woff" crossorigin>` : `<link rel="preload" href="${asset('fonts/dm-serif-text.woff')}" as="font" type="font/woff" crossorigin>\n<link rel="preload" href="${asset('fonts/dm-serif-display.woff')}" as="font" type="font/woff" crossorigin>`}
 <link rel="stylesheet" href="${asset('css/site.css')}?v=${CSS_V}">
 ${jsonLd(lang, page)}`;
 }
@@ -327,6 +378,8 @@ function render(lang, page) {
     case 'svc': body = bodyService(lang, page); break;
     case 'damascus': case 'uae': body = bodyBranch(lang, page); break;
     case 'contact': body = bodyContact(lang); break;
+    case 'about': body = bodyAbout(lang); break;
+    case 'guide': body = bodyGuide(lang); break;
   }
   const t = ui[lang];
   return `<!doctype html>
@@ -334,7 +387,7 @@ function render(lang, page) {
 <head>
 ${head(lang, page, c)}
 </head>
-<body data-api="${esc(API_BASE)}">
+<body>
 ${header(lang, page)}
 <main id="main">
 ${body}
@@ -356,7 +409,7 @@ function render404() {
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="${asset('img/favicon-32.png')}">
 <link rel="stylesheet" href="${asset('css/site.css')}?v=${CSS_V}"></head>
-<body data-api="${esc(API_BASE)}">${header(lang, page)}<main id="main"><section class="phero"><div class="wrap"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p><div class="cta"><a class="btn btn-wa" href="${href('ar', '/')}">${esc(t.breadcrumbHome)}</a><a class="btn btn-line-d" href="${href('ar', '/services/')}">${esc(t.allServices)}</a></div></div></section></main>${footer(lang)}</body></html>
+<body>${header(lang, page)}<main id="main"><section class="phero"><div class="wrap"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p><div class="cta"><a class="btn btn-wa" href="${href('ar', '/')}">${esc(t.breadcrumbHome)}</a><a class="btn btn-line-d" href="${href('ar', '/services/')}">${esc(t.allServices)}</a></div></div></section></main>${footer(lang)}</body></html>
 `;
 }
 
