@@ -7,6 +7,7 @@ import { SITE_URL, company, branches } from './src/config.mjs';
 import { services, ui as ui0, pages } from './src/content.mjs';
 import { checklists, extraUi, aboutPage, guidePage } from './src/content2.mjs';
 import { arTitles, seoExtra, branchSeo } from './src/seo.mjs';
+const sa = (b, lang) => (b.streetAddress && typeof b.streetAddress === 'object' ? b.streetAddress[lang] : b.streetAddress);
 import { extra } from './src/services-extra.mjs';
 for (const e of extra) { services.push(e.svc); checklists[e.svc.slug] = e.check; seoExtra[e.svc.slug] = e.seo; arTitles[e.svc.slug] = e.arTitle; }
 for (const s of services) if (arTitles[s.slug]) s.ar.title = arTitles[s.slug];
@@ -145,8 +146,8 @@ function branchBlock(lang, key) {
   const wa = waLink(b, t.waMsgGeneral);
   const rows = [];
   const dist = b.district ? b.district[lang] : null;
-  if (key === 'sy') rows.push([t.addressLabel, lang === 'ar' ? `دمشق، ${dist}${b.streetAddress ? '، ' + b.streetAddress : ''}` : `${dist ? dist + ', ' : ''}Damascus${b.streetAddress ? ', ' + b.streetAddress : ''}`]);
-  else if (b.streetAddress) rows.push([t.addressLabel, b.streetAddress]);
+  if (key === 'sy') rows.push([t.addressLabel, lang === 'ar' ? `دمشق، ${dist}${b.streetAddress ? '، ' + sa(b, 'ar') : ''}` : `${dist ? dist + ', ' : ''}Damascus${b.streetAddress ? ', ' + sa(b, 'en') : ''}`]);
+  else if (b.streetAddress) rows.push([t.addressLabel, sa(b, lang)]);
   rows.push([t.areasLabel, areas]);
   if (b.hours) rows.push([lang === 'ar' ? 'ساعات الدوام' : 'Hours', b.hours.join(' | ')]);
   else if (b.hoursText) rows.push([lang === 'ar' ? 'ساعات الدوام' : 'Hours', b.hoursText[lang]]);
@@ -313,7 +314,7 @@ function branchNode(key, lang) {
   const b = branches[key], t = ui[lang];
   const addr = { '@type': 'PostalAddress', addressCountry: b.country };
   if (key === 'sy') addr.addressLocality = lang === 'ar' ? 'دمشق' : 'Damascus';
-  const street = [b.district ? b.district[lang] : null, b.streetAddress].filter(Boolean).join(lang === 'ar' ? '، ' : ', ');
+  const street = [b.district ? b.district[lang] : null, b.streetAddress ? sa(b, lang) : null].filter(Boolean).join(lang === 'ar' ? '، ' : ', ');
   if (street) addr.streetAddress = street;
   const n = { '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'], '@id': branchId(key), name: `${lang === 'ar' ? company.fullAr : company.fullEn} - ${key === 'sy' ? (lang === 'ar' ? 'دمشق' : 'Damascus') : (lang === 'ar' ? 'الإمارات' : 'UAE')}`, url: abs(lang, key === 'sy' ? '/damascus/' : '/uae/'), telephone: b.tel, email: company.email, image: absAsset('img/og-image.jpg'), logo: absAsset('img/logo.webp'), address: addr, areaServed: areaList(key, lang), parentOrganization: { '@id': orgId } };
   if (b.geo) n.geo = { '@type': 'GeoCoordinates', latitude: b.geo.lat, longitude: b.geo.lng };

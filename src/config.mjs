@@ -30,12 +30,12 @@ export const branches = {
     country: 'SY',
     // معلومات ناقصة:
     district: { ar: 'المزة', en: 'Mazzeh' },   // دمشق، المزة
-    streetAddress: null,        // الشارع/المبنى بالتفصيل (لسا ما أعطيتني ياه)
+    streetAddress: { ar: '17 نيسان', en: '17th April' },  // كما يظهر في خرائط جوجل
     instagram: 'https://www.instagram.com/merzona.sy',
     hours: null,                // صيغة schema.org مع الأيام (الأيام غير محددة بعد)
     hoursText: { ar: 'من الساعة 10 صباحاً حتى 4 عصراً', en: '10:00 am to 4:00 pm' },
     geo: null,                  // { lat: 33.5, lng: 36.3 }
-    gbpUrl: null,               // رابط ملف النشاط على خرائط جوجل (Google Business Profile)
+    gbpUrl: 'https://maps.app.goo.gl/amVAx65SgvadFenk7',  // موقع الفرع على خرائط جوجل
     mapEmbedUrl: null,
     areasAr: ['دمشق', 'ريف دمشق', 'باقي المحافظات السورية'],
     areasEn: ['Damascus', 'Damascus countryside', 'the other Syrian governorates'],
