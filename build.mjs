@@ -149,8 +149,8 @@ function branchBlock(lang, key) {
   if (key === 'sy') rows.push([t.addressLabel, lang === 'ar' ? `دمشق، ${dist}${b.streetAddress ? '، ' + sa(b, 'ar') : ''}` : `${dist ? dist + ', ' : ''}Damascus${b.streetAddress ? ', ' + sa(b, 'en') : ''}`]);
   else if (b.streetAddress) rows.push([t.addressLabel, sa(b, lang)]);
   rows.push([t.areasLabel, areas]);
-  if (b.hours) rows.push([lang === 'ar' ? 'ساعات الدوام' : 'Hours', b.hours.join(' | ')]);
-  else if (b.hoursText) rows.push([lang === 'ar' ? 'ساعات الدوام' : 'Hours', b.hoursText[lang]]);
+  if (b.hoursText) rows.push([lang === 'ar' ? 'ساعات الدوام' : 'Hours', b.hoursText[lang]]);
+  else if (b.hours) rows.push([lang === 'ar' ? 'ساعات الدوام' : 'Hours', b.hours.join(' | ')]);
   const dl = rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
   const gbp = b.gbpUrl ? `<a href="${esc(b.gbpUrl)}" rel="noopener">${lang === 'ar' ? 'الموقع على خرائط جوجل' : 'Find us on Google Maps'}</a> ` : '';
   return `<article class="branch"><h3><a href="${href(lang, key === 'sy' ? '/damascus/' : '/uae/')}">${esc(name)}</a></h3>
