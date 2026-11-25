@@ -218,3 +218,15 @@ ul,ol{margin:0;padding:0}
 .fab-panel{position:absolute;inset-inline-end:0;bottom:calc(100% + 10px);background:var(--w);border:2px solid var(--k);border-radius:var(--r);padding:.4rem;display:grid;min-width:220px}
 .fab-panel a{padding:.7rem 1rem;color:var(--k);text-decoration:none;border-radius:4px}
 .fab-panel a:hover{background:var(--tint)}
+
+/* بداية الرئيسية مدمجة: تعريف ثم الخدمات مباشرة */
+.hero-compact .hero-in{grid-template-columns:1fr;padding-block:clamp(1.8rem,5vw,3.2rem)}
+.hero-compact h1{max-width:28ch}
+.hero-compact .lead{max-width:64ch}
+/* بطاقات المقالات */
+.acards{display:grid;gap:1rem;margin:1.2rem 0}
+.acard{display:block;border:2px solid var(--k);border-top:6px solid var(--b);padding:1.1rem 1.2rem;text-decoration:none;color:var(--k);background:var(--w)}
+.acard h3{font-size:1.1rem;margin:0 0 .4rem}
+.acard p{margin:0 0 .7rem;color:var(--muted);font-size:.96em}
+.acard:hover,.acard:focus-visible{border-color:var(--b)}
+@media (min-width:760px){.acards{grid-template-columns:repeat(3,1fr)}}

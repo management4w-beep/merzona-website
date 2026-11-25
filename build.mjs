@@ -9,6 +9,7 @@ import { checklists, extraUi, aboutPage, guidePage } from './src/content2.mjs';
 import { arTitles, seoExtra, branchSeo } from './src/seo.mjs';
 const sa = (b, lang) => (b.streetAddress && typeof b.streetAddress === 'object' ? b.streetAddress[lang] : b.streetAddress);
 import { extra } from './src/services-extra.mjs';
+import { labels as artUi, articlesIndex, articles, glossaryPage } from './src/articles.mjs';
 for (const e of extra) { services.push(e.svc); checklists[e.svc.slug] = e.check; seoExtra[e.svc.slug] = e.seo; arTitles[e.svc.slug] = e.arTitle; }
 for (const s of services) if (arTitles[s.slug]) s.ar.title = arTitles[s.slug];
 
@@ -48,6 +49,9 @@ const PAGES = [
   ...services.map((s) => ({ key: 'svc', svc: s, path: `/services/${s.slug}/`, copy: s, wa: null })),
   { key: 'about', path: '/about/', copy: aboutPage, wa: null },
   { key: 'guide', path: '/guide/', copy: guidePage, wa: null },
+  { key: 'articlesIndex', path: '/articles/', copy: articlesIndex, wa: null },
+  ...articles.map((a) => ({ key: 'article', art: a, path: `/articles/${a.slug}/`, copy: a, wa: null })),
+  { key: 'glossary', path: '/glossary/', copy: glossaryPage, wa: null },
   { key: 'damascus', path: '/damascus/', copy: pages.damascus, wa: 'sy' },
   { key: 'uae', path: '/uae/', copy: pages.uae, wa: 'ae' },
   { key: 'contact', path: '/contact/', copy: pages.contact, wa: null },
@@ -59,12 +63,12 @@ function navLinks(lang, activeKey) {
   const items = [
     ['servicesIndex', '/services/', t.services],
     ['about', '/about/', t.about],
-    ['guide', '/guide/', t.guide],
+    ['articlesIndex', '/articles/', artUi[lang].nav],
     ['damascus', '/damascus/', t.damascus],
     ['uae', '/uae/', t.uae],
     ['contact', '/contact/', t.contact],
   ];
-  return items.map(([k, p, label]) => `<a href="${href(lang, p)}"${activeKey === k || (k === 'servicesIndex' && activeKey === 'svc') ? ' aria-current="page"' : ''}>${esc(label)}</a>`).join('');
+  return items.map(([k, p, label]) => `<a href="${href(lang, p)}"${activeKey === k || (k === 'servicesIndex' && activeKey === 'svc') || (k === 'articlesIndex' && (activeKey === 'article' || activeKey === 'glossary')) ? ' aria-current="page"' : ''}>${esc(label)}</a>`).join('');
 }
 
 function header(lang, page) {
@@ -174,6 +178,9 @@ function crumbTrail(lang, page) {
   if (page.key === 'svc') return [[t.allServices, '/services/'], [page.copy[lang].name, page.path]];
   if (page.key === 'servicesIndex') return [[t.allServices, page.path]];
   if (page.key === 'home') return [];
+  if (page.key === 'articlesIndex') return [[artUi[lang].breadcrumb, page.path]];
+  if (page.key === 'article') return [[artUi[lang].breadcrumb, '/articles/'], [page.copy[lang].h1, page.path]];
+  if (page.key === 'glossary') return [[artUi[lang].breadcrumb, '/articles/'], [artUi[lang].breadcrumbGlossary, page.path]];
   const label = { damascus: t.nav.damascus, uae: t.nav.uae, contact: t.nav.contact, about: t.breadcrumbAbout, guide: t.breadcrumbGuide }[page.key];
   return [[label, page.path]];
 }
@@ -205,7 +212,7 @@ function footer(lang) {
 <p><a href="${href(lang, '/damascus/')}">${esc(t.branchSy)}</a><br><a dir="ltr" href="tel:${sy.tel}">${sy.phoneDisplay}</a></p>
 <p><a href="${href(lang, '/uae/')}">${esc(t.branchAe)}</a><br><a dir="ltr" href="tel:${ae.tel}">${ae.phoneDisplay}</a></p>
 <p><a dir="ltr" href="mailto:${company.email}">${esc(company.email)}</a></p>
-<p><a href="${href(lang, '/about/')}">${esc(t.nav.about)}</a><br><a href="${href(lang, '/guide/')}">${esc(t.nav.guide)}</a></p></div>
+<p><a href="${href(lang, '/about/')}">${esc(t.nav.about)}</a><br><a href="${href(lang, '/guide/')}">${esc(t.nav.guide)}</a><br><a href="${href(lang, '/articles/')}">${esc(artUi[lang].nav)}</a><br><a href="${href(lang, '/glossary/')}">${esc(artUi[lang].glossaryNav)}</a></p></div>
 </div><div class="wrap ft-bot">© ${YEAR} ${esc(lang === 'ar' ? company.fullAr : company.fullEn)}. ${esc(t.rights)}.</div></footer>`;
 }
 
@@ -219,12 +226,46 @@ function phero(lang, page, c, extra = '') {
 
 function bodyHome(lang) {
   const t = ui[lang], c = pages.home[lang];
-  return `<section class="hero"><div class="wrap hero-in"><div class="hero-t"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p>${ctaButtons(lang, null, 'cta-hero')}</div>${heroVisual()}</div></section>
+  return `<section class="hero hero-compact"><div class="wrap hero-in"><div class="hero-t"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p>${ctaButtons(lang, null, 'cta-hero')}</div></div></section>
 <section class="sec" aria-labelledby="svc-h"><div class="wrap"><h2 id="svc-h">${esc(c.servicesH)}</h2><p class="muted">${esc(c.servicesLead)}</p>${mosaic(lang)}</div></section>
 <section class="sec sec-alt" aria-labelledby="ab-h"><div class="wrap two"><div><h2 id="ab-h">${esc(t.homeAboutH)}</h2><p>${esc(t.homeAboutP)}</p><p><a class="more" href="${href(lang, '/about/')}">${esc(t.moreAbout)}</a></p></div><div><h2>${esc(t.homeGuideH)}</h2><p>${esc(t.homeGuideP)}</p><p><a class="more" href="${href(lang, '/guide/')}">${esc(t.readGuide)}</a></p></div></div></section>
+${articlesTeaser(lang)}
 <section class="sec" aria-labelledby="br-h"><div class="wrap"><h2 id="br-h">${esc(c.branchesH)}</h2><div class="branches">${branchBlock(lang, 'sy')}${branchBlock(lang, 'ae')}</div></div></section>
 <section class="sec sec-alt" aria-labelledby="st-h"><div class="wrap"><h2 id="st-h">${esc(c.stepsH)}</h2><ol class="steps">${c.steps.map(([h, p]) => `<li><h3>${esc(h)}</h3><p>${esc(p)}</p></li>`).join('')}</ol></div></section>
 ${ctaBand(lang, c.ctaH, c.ctaP)}`;
+}
+
+
+function articleCard(lang, a) {
+  const c = a[lang];
+  return `<a class="acard" href="${href(lang, `/articles/${a.slug}/`)}"><h3>${esc(c.h1)}</h3><p>${esc(c.lead)}</p><span class="more">${esc(artUi[lang].readMore)}</span></a>`;
+}
+function articlesTeaser(lang, n = 3) {
+  const u = artUi[lang];
+  return `<section class="sec" aria-labelledby="art-h"><div class="wrap"><h2 id="art-h">${esc(u.latestH)}</h2><p class="muted">${esc(u.latestP)}</p><div class="acards">${articles.slice(0, n).map((a) => articleCard(lang, a)).join('')}</div><p><a class="more" href="${href(lang, '/articles/')}">${esc(u.allArticles)}</a> &nbsp; <a class="more" href="${href(lang, '/glossary/')}">${esc(u.glossaryLink)}</a></p></div></section>`;
+}
+function bodyArticlesIndex(lang) {
+  const c = articlesIndex[lang], u = artUi[lang];
+  return `${phero(lang, { key: 'articlesIndex', path: '/articles/' }, c)}
+<section class="sec"><div class="wrap"><div class="acards">${articles.map((a) => articleCard(lang, a)).join('')}</div></div></section>
+<section class="sec sec-alt"><div class="wrap"><h2>${esc(u.glossaryTeaserH)}</h2><p>${esc(u.glossaryTeaserP)}</p><p><a class="more" href="${href(lang, '/glossary/')}">${esc(u.glossaryLink)}</a></p></div></section>
+${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP)}`;
+}
+function bodyArticle(lang, page) {
+  const a = page.art, c = a[lang], u = artUi[lang];
+  const svc = a.services.map((s) => svcBySlug[s]).filter(Boolean);
+  const others = articles.filter((x) => x.slug !== a.slug).slice(0, 3);
+  return `${phero(lang, page, c)}
+<section class="sec"><div class="wrap narrow prose">${c.sections.map(([h, ps]) => `<h2>${esc(h)}</h2>${ps.length > 2 || ps.every((p) => p.length < 90) ? `<ul class="ticks">${ps.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>` : ps.map((p) => `<p>${esc(p)}</p>`).join('')}`).join('')}</div></section>
+${faqBlock(lang, u.faqH, c.faq)}
+<section class="sec sec-alt"><div class="wrap"><h2>${esc(u.relatedServices)}</h2><p class="chips">${svc.map((s) => `<a href="${href(lang, `/services/${s.slug}/`)}">${esc(s[lang].name)}</a>`).join('')}<a href="${href(lang, '/glossary/')}">${esc(u.glossaryNav)}</a></p><h2>${esc(u.alsoRead)}</h2><div class="acards">${others.map((x) => articleCard(lang, x)).join('')}</div></div></section>
+${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP, c.h1)}`;
+}
+function bodyGlossary(lang) {
+  const c = glossaryPage[lang];
+  return `${phero(lang, { key: 'glossary', path: '/glossary/' }, c)}
+${c.sections.map(([h, items], i) => `<section class="sec${i % 2 ? ' sec-alt' : ''}"><div class="wrap"><h2>${esc(h)}</h2><dl class="defs">${items.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></div></section>`).join('\n')}
+${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP)}`;
 }
 
 function bodyServicesIndex(lang) {
@@ -342,6 +383,11 @@ function jsonLd(lang, page) {
       const c = page.svc[lang];
       g.push({ '@type': 'Service', '@id': `${abs(lang, page.path)}#service`, name: c.name, serviceType: c.name, description: c.desc, url: abs(lang, page.path), inLanguage: lang, provider: { '@id': orgId }, areaServed: [...areaList('sy', lang), ...areaList('ae', lang)] });
     }
+    if (page.key === 'article') {
+      const c = page.copy[lang];
+      g.push({ '@type': 'Article', '@id': `${abs(lang, page.path)}#article`, headline: c.h1, description: c.desc, inLanguage: lang, url: abs(lang, page.path), dateModified: BUILD_DATE, author: { '@id': orgId }, publisher: { '@id': orgId }, mainEntityOfPage: abs(lang, page.path) });
+      g.push({ '@type': 'FAQPage', mainEntity: c.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
+    }
     if (page.key === 'about') g.push({ '@type': 'AboutPage', url: abs(lang, page.path), name: page.copy[lang].title, about: { '@id': orgId } });
     if (page.key === 'contact') g.push({ '@type': 'ContactPage', url: abs(lang, page.path), name: page.copy[lang].title, isPartOf: { '@id': `${ORIGIN}${BASE}/#website` } });
   }
@@ -393,6 +439,9 @@ function render(lang, page) {
     case 'contact': body = bodyContact(lang); break;
     case 'about': body = bodyAbout(lang); break;
     case 'guide': body = bodyGuide(lang); break;
+    case 'articlesIndex': body = bodyArticlesIndex(lang); break;
+    case 'article': body = bodyArticle(lang, page); break;
+    case 'glossary': body = bodyGlossary(lang); break;
   }
   const t = ui[lang];
   return `<!doctype html>
