@@ -80,7 +80,7 @@ function header(lang, page) {
   const links = navLinks(lang, page.key);
   return `<a class="skip" href="#main">${esc(t.skip)}</a>
 <header class="hd"><div class="wrap hd-in">
-<a class="brand" href="${href(lang, '/')}" aria-label="${esc(company.fullEn)}"><img src="${asset('img/logo-mark.webp')}" width="44" height="38" alt=""><span lang="en" dir="ltr">${esc(brandName)}</span></a>
+<a class="brand" href="${href(lang, '/')}" aria-label="${esc(company.fullEn)}"><img src="${asset('img/logo-header.webp')}" width="130" height="46" alt="${esc(brandName)}"></a>
 <nav class="nav" aria-label="${esc(t.menu)}">${links}</nav>
 <div class="hd-end"><a class="lang" href="${href(other, page.path)}" hreflang="${other}" lang="${other}">${esc(t.otherName)}</a>
 <details class="m-menu"><summary aria-label="${esc(t.menu)}"><span class="burger" aria-hidden="true"></span></summary><nav class="m-nav" aria-label="${esc(t.menu)}">${links}</nav></details></div>
