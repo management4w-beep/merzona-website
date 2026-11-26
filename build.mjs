@@ -535,6 +535,8 @@ for (const page of PAGES) {
 }
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapUrls.join('\n')}\n</urlset>\n`);
 write('review/index.html', renderReview());
+// ملف التحقق من ملكية الموقع في Google Search Console (لا تحذفه)
+write('googleeaa4937c2234d2e6.html', 'google-site-verification: googleeaa4937c2234d2e6.html');
 write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}${BASE}/sitemap.xml\n`);
 write('404.html', render404());
 write('.nojekyll', '');
