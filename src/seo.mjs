@@ -127,7 +127,7 @@ export const branchSeo = {
     },
     en: {
       h: 'Aluminum and glass for your project in the UAE',
-      ps: ['From our UAE branch (Dubai and Sharjah) we serve all of the UAE: aluminum windows and doors, sliding and folding systems, curtain wall facades, cast aluminum and glass railings, shower cabins, pergolas and shades, glass majlis and domes, glass partitions, shopfronts, cladding, aluminum kitchens and maintenance.', 'Send us a photo of the place and the sizes on WhatsApp and we will reply with a quote.'],
+      ps: ['From our Sharjah branch (also serving Dubai) we serve all of the UAE: aluminum windows and doors, sliding and folding systems, curtain wall facades, cast aluminum and glass railings, shower cabins, pergolas and shades, glass majlis and domes, glass partitions, shopfronts, cladding, aluminum kitchens and maintenance.', 'Send us a photo of the place and the sizes on WhatsApp and we will reply with a quote.'],
     },
   },
 };
