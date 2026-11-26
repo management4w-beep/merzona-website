@@ -4,7 +4,7 @@
 export const services = [
   {
     slug: 'windows-doors',
-    cats: ['door', 'cast aluminum doors'],
+    cats: ['windows', 'sliding', 'door', 'cast aluminum doors'], // 'windows' كتالوج جديد (اختياري): أي صور تُرفع فيه تظهر أولاً
     ar: {
       name: 'شبابيك وأبواب ألمنيوم',
       title: 'شبابيك وأبواب ألمنيوم في دمشق ودبي | ميرزونا',
