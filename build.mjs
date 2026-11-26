@@ -441,7 +441,7 @@ function head(lang, page, c) {
 <link rel="alternate" hreflang="en" href="${abs('en', page.path)}">
 <link rel="alternate" hreflang="x-default" href="${abs('ar', page.path)}">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="theme-color" content="#0a2233">
+<meta name="theme-color" content="#000000">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(lang === 'ar' ? company.fullAr : company.fullEn)}">
 <meta property="og:title" content="${esc(c.title)}">
@@ -455,6 +455,7 @@ function head(lang, page, c) {
 <link rel="icon" type="image/png" sizes="32x32" href="${asset('img/favicon-32.png')}">
 <link rel="apple-touch-icon" href="${asset('img/apple-touch-icon.png')}">
 <link rel="manifest" href="${BASE}/site.webmanifest">
+<link rel="preload" href="${asset('fonts/amiri-Bold.woff')}" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="${asset('fonts/plex-arabic-regular.woff')}" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="${asset('fonts/plex-arabic-semibold.woff')}" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="${asset('css/site.css')}?v=${CSS_V}">

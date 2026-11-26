@@ -1,11 +1,12 @@
+@font-face{font-family:"Amiri";font-weight:700;font-display:swap;src:url(../fonts/amiri-Bold.woff) format("woff")}
 @font-face{font-family:"IBM Plex Sans Arabic";font-weight:400;font-display:swap;src:url(../fonts/plex-arabic-regular.woff) format("woff")}
 @font-face{font-family:"IBM Plex Sans Arabic";font-weight:600;font-display:swap;src:url(../fonts/plex-arabic-semibold.woff) format("woff")}
 
-/* الألوان: أبيض، أسود، أزرق #3e9fd7 و #66b3df. الدرجات الباقية مشتقة منها */
+/* الألوان: أسود وأبيض مع نحاسي/شمبانيا #b08d57 و #d2b88d. العناوين بخط Amiri */
 :root{
-  --k:#000; --w:#fff; --b:#3e9fd7; --b2:#66b3df;
-  --tint:#f0f8fc; --line:rgba(0,0,0,.14); --muted:#3c3c3c;
-  --r:6px; --wrap:1180px;
+  --k:#000; --w:#fff; --b:#b08d57; --b2:#d2b88d; --hf:"Amiri","Noto Naskh Arabic",serif;
+  --tint:#f7f3ec; --line:rgba(0,0,0,.14); --muted:#3c3c3c;
+  --r:2px; --wrap:1180px;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
@@ -17,8 +18,9 @@ img{max-width:100%;height:auto}
 a{color:var(--k);text-decoration-color:var(--b);text-decoration-thickness:2px;text-underline-offset:.22em}
 a:hover{text-decoration-color:var(--k)}
 h1,h2,h3{line-height:1.3;margin:0 0 .55em;color:var(--k);font-weight:600}
-h1{font-size:clamp(1.45rem,4vw,2.5rem)}
-h2{font-size:clamp(1.2rem,2.7vw,1.7rem)}
+h1,h2{font-family:var(--hf);font-weight:700;line-height:1.4;letter-spacing:0}
+h1{font-size:clamp(1.75rem,4.8vw,3rem)}
+h2{font-size:clamp(1.45rem,3.2vw,2.05rem)}
 h3{font-size:1.05rem}
 p{margin:0 0 1em}
 ul,ol{margin:0;padding:0}
