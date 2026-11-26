@@ -248,3 +248,12 @@ ul,ol{margin:0;padding:0}
 [dir=rtl] .hero-bg .gl{animation-name:glsweepr}
 @keyframes glsweepr{0%{transform:skewX(20deg) translateX(300%)}55%,100%{transform:skewX(20deg) translateX(-650%)}}
 @media (prefers-reduced-motion:reduce){.hero-bg .gl{animation:none;opacity:.25;transform:skewX(-20deg) translateX(150%)}}
+
+/* بطاقات المشاريع (أغلفة فيديوهات إنستغرام) */
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin:1.2rem 0}
+.pcard{position:relative;display:block;overflow:hidden;background:#000;color:#fff;text-decoration:none;border-top:5px solid var(--b)}
+.pcard img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
+.pcard .pt{position:absolute;inset:auto 0 0 0;padding:1.6rem .6rem .5rem;font-size:.85rem;line-height:1.4;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85))}
+.pcard .pw{position:absolute;top:.5rem;inset-inline-start:.5rem;background:var(--b);color:#000;font-size:.75rem;padding:.15rem .5rem}
+.pcard:hover,.pcard:focus-visible{outline:3px solid var(--b)}
+@media (min-width:700px){.pgrid{grid-template-columns:repeat(4,1fr)}}

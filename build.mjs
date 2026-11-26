@@ -9,6 +9,7 @@ import { checklists, extraUi, aboutPage, guidePage } from './src/content2.mjs';
 import { arTitles, seoExtra, branchSeo } from './src/seo.mjs';
 const sa = (b, lang) => (b.streetAddress && typeof b.streetAddress === 'object' ? b.streetAddress[lang] : b.streetAddress);
 import { extra } from './src/services-extra.mjs';
+import { projects, projectsPage, IG_REEL } from './src/projects.mjs';
 import { labels as artUi, articlesIndex, articles, glossaryPage } from './src/articles.mjs';
 for (const e of extra) { services.push(e.svc); checklists[e.svc.slug] = e.check; seoExtra[e.svc.slug] = e.seo; arTitles[e.svc.slug] = e.arTitle; }
 for (const s of services) if (arTitles[s.slug]) s.ar.title = arTitles[s.slug];
@@ -52,6 +53,7 @@ const PAGES = [
   { key: 'articlesIndex', path: '/articles/', copy: articlesIndex, wa: null },
   ...articles.map((a) => ({ key: 'article', art: a, path: `/articles/${a.slug}/`, copy: a, wa: null })),
   { key: 'glossary', path: '/glossary/', copy: glossaryPage, wa: null },
+  { key: 'projects', path: '/projects/', copy: projectsPage, wa: null },
   { key: 'damascus', path: '/damascus/', copy: pages.damascus, wa: 'sy' },
   { key: 'uae', path: '/uae/', copy: pages.uae, wa: 'ae' },
   { key: 'contact', path: '/contact/', copy: pages.contact, wa: null },
@@ -180,6 +182,7 @@ function crumbTrail(lang, page) {
   if (page.key === 'home') return [];
   if (page.key === 'articlesIndex') return [[artUi[lang].breadcrumb, page.path]];
   if (page.key === 'article') return [[artUi[lang].breadcrumb, '/articles/'], [page.copy[lang].h1, page.path]];
+  if (page.key === 'projects') return [[projectsPage[lang].breadcrumb, page.path]];
   if (page.key === 'glossary') return [[artUi[lang].breadcrumb, '/articles/'], [artUi[lang].breadcrumbGlossary, page.path]];
   const label = { damascus: t.nav.damascus, uae: t.nav.uae, contact: t.nav.contact, about: t.breadcrumbAbout, guide: t.breadcrumbGuide }[page.key];
   return [[label, page.path]];
@@ -212,7 +215,7 @@ function footer(lang) {
 <p><a href="${href(lang, '/damascus/')}">${esc(t.branchSy)}</a><br><a dir="ltr" href="tel:${sy.tel}">${sy.phoneDisplay}</a></p>
 <p><a href="${href(lang, '/uae/')}">${esc(t.branchAe)}</a><br><a dir="ltr" href="tel:${ae.tel}">${ae.phoneDisplay}</a></p>
 <p><a dir="ltr" href="mailto:${company.email}">${esc(company.email)}</a></p>
-<p><a href="${href(lang, '/about/')}">${esc(t.nav.about)}</a><br><a href="${href(lang, '/guide/')}">${esc(t.nav.guide)}</a><br><a href="${href(lang, '/articles/')}">${esc(artUi[lang].nav)}</a><br><a href="${href(lang, '/glossary/')}">${esc(artUi[lang].glossaryNav)}</a></p></div>
+<p><a href="${href(lang, '/about/')}">${esc(t.nav.about)}</a><br><a href="${href(lang, '/guide/')}">${esc(t.nav.guide)}</a><br><a href="${href(lang, '/articles/')}">${esc(artUi[lang].nav)}</a><br><a href="${href(lang, '/glossary/')}">${esc(artUi[lang].glossaryNav)}</a><br><a href="${href(lang, '/projects/')}">${esc(projectsPage[lang].breadcrumb)}</a></p></div>
 </div><div class="wrap ft-bot">© ${YEAR} ${esc(lang === 'ar' ? company.fullAr : company.fullEn)}. ${esc(t.rights)}.</div></footer>`;
 }
 
@@ -229,6 +232,7 @@ function bodyHome(lang) {
   return `<section class="hero hero-compact"><div class="hero-bg" aria-hidden="true"><i class="gl g1"></i><i class="gl g2"></i><i class="gl g3"></i></div><div class="wrap hero-in"><div class="hero-t"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p>${ctaButtons(lang, null, 'cta-hero')}</div></div></section>
 <section class="sec" aria-labelledby="svc-h"><div class="wrap"><h2 id="svc-h">${esc(c.servicesH)}</h2><p class="muted">${esc(c.servicesLead)}</p>${mosaic(lang)}</div></section>
 <section class="sec sec-alt" aria-labelledby="ab-h"><div class="wrap two"><div><h2 id="ab-h">${esc(t.homeAboutH)}</h2><p>${esc(t.homeAboutP)}</p><p><a class="more" href="${href(lang, '/about/')}">${esc(t.moreAbout)}</a></p></div><div><h2>${esc(t.homeGuideH)}</h2><p>${esc(t.homeGuideP)}</p><p><a class="more" href="${href(lang, '/guide/')}">${esc(t.readGuide)}</a></p></div></div></section>
+${projectsTeaser(lang)}
 ${articlesTeaser(lang)}
 <section class="sec" aria-labelledby="br-h"><div class="wrap"><h2 id="br-h">${esc(c.branchesH)}</h2><div class="branches">${branchBlock(lang, 'sy')}${branchBlock(lang, 'ae')}</div></div></section>
 <section class="sec sec-alt" aria-labelledby="st-h"><div class="wrap"><h2 id="st-h">${esc(c.stepsH)}</h2><ol class="steps">${c.steps.map(([h, p]) => `<li><h3>${esc(h)}</h3><p>${esc(p)}</p></li>`).join('')}</ol></div></section>
@@ -239,6 +243,20 @@ ${ctaBand(lang, c.ctaH, c.ctaP)}`;
 function articleCard(lang, a) {
   const c = a[lang];
   return `<a class="acard" href="${href(lang, `/articles/${a.slug}/`)}"><h3>${esc(c.h1)}</h3><p>${esc(c.lead)}</p><span class="more">${esc(artUi[lang].readMore)}</span></a>`;
+}
+function projectCard(lang, p) {
+  const u = projectsPage[lang];
+  return `<a class="pcard" href="${IG_REEL(p.id)}" target="_blank" rel="noopener"><img src="${asset(`img/projects/${p.id}.webp`)}" width="408" height="545" alt="${esc(p[lang])}" loading="lazy"><span class="pt">${esc(p[lang])}</span><span class="pw">${esc(u.watch)}</span></a>`;
+}
+function projectsTeaser(lang) {
+  const u = projectsPage[lang];
+  return `<section class="sec" aria-labelledby="pj-h"><div class="wrap"><h2 id="pj-h">${esc(u.home)}</h2><p class="muted">${esc(u.homeP)}</p><div class="pgrid">${projects.slice(0, 8).map((p) => projectCard(lang, p)).join('')}</div><p><a class="more" href="${href(lang, '/projects/')}">${esc(u.all)}</a></p></div></section>`;
+}
+function bodyProjects(lang) {
+  const u = projectsPage[lang];
+  return `${phero(lang, { key: 'projects', path: '/projects/' }, u)}
+<section class="sec"><div class="wrap"><div class="pgrid">${projects.map((p) => projectCard(lang, p)).join('')}</div><p class="links">${esc(u.follow)}: ${igLink(lang, 'sy')} &nbsp; ${igLink(lang, 'ae')}</p></div></section>
+${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP)}`;
 }
 function articlesTeaser(lang, n = 3) {
   const u = artUi[lang];
@@ -442,6 +460,7 @@ function render(lang, page) {
     case 'articlesIndex': body = bodyArticlesIndex(lang); break;
     case 'article': body = bodyArticle(lang, page); break;
     case 'glossary': body = bodyGlossary(lang); break;
+    case 'projects': body = bodyProjects(lang); break;
   }
   const t = ui[lang];
   return `<!doctype html>
