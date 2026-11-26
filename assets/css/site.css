@@ -3,7 +3,7 @@
 @font-face{font-family:"IBM Plex Sans Arabic";font-weight:600;font-display:swap;src:url(../fonts/plex-arabic-semibold.woff) format("woff")}
 
 /* الألوان: أسود وأبيض مع فضي من إطار الشعار #b4b8bd و #d6d9dd. العناوين بخط Amiri */
-:root{
+:root{--grade:grayscale(.82) sepia(.18) hue-rotate(172deg) saturate(1.25) contrast(1.07) brightness(.97);
   --k:#000; --w:#fff; --b:#b4b8bd; --b2:#d6d9dd; --bd:#6d737a; --hf:"Amiri","Noto Naskh Arabic",serif;
   --tint:#f3f4f6; --line:rgba(0,0,0,.14); --muted:#3c3c3c;
   --r:2px; --wrap:1180px;
@@ -269,3 +269,6 @@ html[lang=ar] .hero-compact{line-height:1.8}
 .hero-bg::after{z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,.66))}
 .hero-bg .gl{z-index:2}
 @media (prefers-reduced-motion:reduce){.hs img{animation:none}.hs img:first-child{opacity:.5}}
+
+/* توحيد ألوان كل صور المنتجات: درجة لونية واحدة باردة بلون الفضي/الأزرق */
+.tile-bg img,.g-it img,.hero-photo img,.hs img,.pcard img,.lb img{filter:var(--grade)}
