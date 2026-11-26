@@ -2,10 +2,10 @@
 @font-face{font-family:"IBM Plex Sans Arabic";font-weight:400;font-display:swap;src:url(../fonts/plex-arabic-regular.woff) format("woff")}
 @font-face{font-family:"IBM Plex Sans Arabic";font-weight:600;font-display:swap;src:url(../fonts/plex-arabic-semibold.woff) format("woff")}
 
-/* الألوان: أسود وأبيض مع نحاسي/شمبانيا #b08d57 و #d2b88d. العناوين بخط Amiri */
+/* الألوان: أسود وأبيض مع فضي من إطار الشعار #b4b8bd و #d6d9dd. العناوين بخط Amiri */
 :root{
-  --k:#000; --w:#fff; --b:#b08d57; --b2:#d2b88d; --hf:"Amiri","Noto Naskh Arabic",serif;
-  --tint:#f7f3ec; --line:rgba(0,0,0,.14); --muted:#3c3c3c;
+  --k:#000; --w:#fff; --b:#b4b8bd; --b2:#d6d9dd; --bd:#6d737a; --hf:"Amiri","Noto Naskh Arabic",serif;
+  --tint:#f3f4f6; --line:rgba(0,0,0,.14); --muted:#3c3c3c;
   --r:2px; --wrap:1180px;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -143,7 +143,7 @@ ul,ol{margin:0;padding:0}
 /* الخطوات */
 .steps{list-style:none;counter-reset:s;display:grid;gap:1.6rem;margin-top:1.6rem}
 .steps li{counter-increment:s;border-top:3px solid var(--k);padding-top:1rem}
-.steps li::before{content:counter(s);display:block;font-weight:600;font-size:2.6rem;line-height:1;color:var(--b);margin-bottom:.4rem}
+.steps li::before{content:counter(s);display:block;font-weight:600;font-size:2.6rem;line-height:1;color:var(--bd);margin-bottom:.4rem}
 .steps p{color:var(--muted);margin:0}
 @media (min-width:800px){.steps{grid-template-columns:repeat(3,1fr);gap:2.4rem}}
 
