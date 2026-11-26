@@ -110,6 +110,13 @@ const catKey = (name) => String(name).trim().toLowerCase();
 const catLabel = (lang, cat) => { const s = services.find((x) => x.cats.some((c) => catKey(c) === catKey(cat))); return s ? s[lang].name : ''; };
 const photos = (cat) => gallery[catKey(cat)]?.items || [];
 const photoUrl = (f) => asset('gallery/' + f);
+// يقصّ الوصف عند آخر كلمة كاملة ليبقى ضمن حدود عرض جوجل
+function shortDesc(d) {
+  if (!d || d.length <= 160) return d;
+  const cut = d.slice(0, 157);
+  const sp = cut.lastIndexOf(' ');
+  return (sp > 100 ? cut.slice(0, sp) : cut).replace(/[\s,.;:،]+$/, '') + '…';
+}
 function coverOf(cats) { for (const c of cats) { const p = photos(c)[0]; if (p) return p; } return null; }
 
 function tile(lang, s, span) {
@@ -428,7 +435,7 @@ function head(lang, page, c) {
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(c.title)}</title>
-<meta name="description" content="${esc(c.desc)}">
+<meta name="description" content="${esc(shortDesc(c.desc))}">
 <link rel="canonical" href="${canon}">
 <link rel="alternate" hreflang="ar" href="${abs('ar', page.path)}">
 <link rel="alternate" hreflang="en" href="${abs('en', page.path)}">
