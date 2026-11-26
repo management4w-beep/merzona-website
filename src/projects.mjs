@@ -3,7 +3,7 @@
 export const IG_REEL = (id) => `https://www.instagram.com/merzona.sy/reel/${id}/`;
 
 export const projects = [
-  ['DfpTyo1AYmx', 'هاندريل (درابزين) يعفور', 'Handrail in Yafour'],
+  ['DfpTyo1AYmx', 'هاندريل (درابزين) في يعفور، سوريا', 'Handrail in Yafour, Syria'],
   ['DfNDHIegNM4', 'درابزين زجاجي للدرج والتراس في فيلا في يعفور', 'Glass railing for the stairs and terrace of a villa in Yafour'],
   ['DfFVP4PgdPm', 'غرفة شتوية زجاجية', 'Glass winter room'],
   ['DeR5QXEgzKB', 'تأسيس زجاج: مكاتب وأبواب وسحّاب', 'Glass fit-out: offices, doors and sliding systems'],
