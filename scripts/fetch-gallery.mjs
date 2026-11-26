@@ -46,6 +46,27 @@ try {
     index[key(name)] = { name: c.name, slug: slug(name), files, ids };
     console.log(name, 'raw', files.length);
   }
+  // صور مرخّصة مجانية (Pexels) مؤقتاً للأقسام التي ما عندها صور حقيقية كفاية
+  try {
+    const stock = JSON.parse(fs.readFileSync(path.join(ROOT, 'config', 'stock-photos.json'), 'utf8')).photos || {};
+    for (const [name, pids] of Object.entries(stock)) {
+      const k = key(name);
+      if ((index[k]?.files.length || 0) >= 4) continue;
+      const dir = path.join(RAW, slug(name));
+      fs.mkdirSync(dir, { recursive: true });
+      const ent = index[k] || (index[k] = { name, slug: slug(name), files: [], ids: [] });
+      for (const pid of pids) {
+        try {
+          const r = await fetch(`https://images.pexels.com/photos/${pid}/pexels-photo-${pid}.jpeg?auto=compress&cs=tinysrgb&w=${SIZE}`, { headers: { 'user-agent': 'Mozilla/5.0' } });
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          const f = `px-${pid}.img`;
+          fs.writeFileSync(path.join(dir, f), Buffer.from(await r.arrayBuffer()));
+          ent.files.push(f); ent.ids.push(`pexels-${pid}`);
+        } catch (e) { console.warn('skip stock', name, pid, e.message); }
+      }
+      console.log('stock', name, ent.files.length);
+    }
+  } catch (e) { console.warn('stock photos skipped:', e.message); }
   fs.writeFileSync(path.join(RAW, 'index.json'), JSON.stringify(index));
 } catch (e) {
   console.warn('gallery fetch failed, site will build without photo galleries:', e.message);
