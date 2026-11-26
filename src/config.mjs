@@ -35,7 +35,7 @@ export const branches = {
     hours: ['Sa-Th 10:00-16:00'],
     hoursText: { ar: 'من السبت إلى الخميس، من الساعة 10 صباحاً حتى 4 عصراً (الجمعة عطلة)', en: 'Saturday to Thursday, 10:00 am to 4:00 pm (closed Friday)' },
     geo: null,                  // { lat: 33.5, lng: 36.3 }
-    gbpUrl: 'https://maps.app.goo.gl/amVAx65SgvadFenk7',  // موقع الفرع على خرائط جوجل
+    gbpUrl: null,               // أضف رابط خرائط ميرزونا الصحيح هنا عند إنشاء الصفحة
     mapEmbedUrl: null,
     areasAr: ['دمشق', 'ريف دمشق', 'باقي المحافظات السورية'],
     areasEn: ['Damascus', 'Damascus countryside', 'the other Syrian governorates'],
