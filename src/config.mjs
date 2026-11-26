@@ -4,7 +4,7 @@
 // ============================================================
 
 // رابط الموقع الأساسي. هلأ GitHub Pages، وبعد ربط الدومين غيّره بس (أو عبر متغير SITE_URL).
-export const SITE_URL = (process.env.SITE_URL || 'https://management4w-beep.github.io/merzona-website').replace(/\/+$/, '');
+export const SITE_URL = (process.env.SITE_URL || 'https://merzona.ae').replace(/\/+$/, '');
 
 // عنوان سيرفر الصور (الـ API العام للكتالوج)
 export const API_BASE = process.env.API_BASE || 'https://merzona-server-production.up.railway.app';
