@@ -245,9 +245,10 @@ function heroSlides() {
 function bodyHome(lang) {
   const t = ui[lang], c = pages.home[lang];
   return `<section class="hero hero-compact"><div class="hero-bg" aria-hidden="true">${heroSlides()}<i class="gl g1"></i><i class="gl g2"></i><i class="gl g3"></i></div><div class="wrap hero-in"><div class="hero-t"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p>${ctaButtons(lang, null, 'cta-hero')}</div></div></section>
-<section class="sec" aria-labelledby="svc-h"><div class="wrap"><h2 id="svc-h">${esc(c.servicesH)}</h2><p class="muted">${esc(c.servicesLead)}</p>${mosaic(lang)}</div></section>
-<section class="sec sec-alt" aria-labelledby="ab-h"><div class="wrap two"><div><h2 id="ab-h">${esc(t.homeAboutH)}</h2><p>${esc(t.homeAboutP)}</p><p><a class="more" href="${href(lang, '/about/')}">${esc(t.moreAbout)}</a></p></div><div><h2>${esc(t.homeGuideH)}</h2><p>${esc(t.homeGuideP)}</p><p><a class="more" href="${href(lang, '/guide/')}">${esc(t.readGuide)}</a></p></div></div></section>
 ${projectsTeaser(lang)}
+<section class="sec sec-alt" aria-labelledby="svc-h"><div class="wrap"><h2 id="svc-h">${esc(c.servicesH)}</h2><p class="muted">${esc(c.servicesLead)}</p>${mosaic(lang)}</div></section>
+<section class="sec" aria-labelledby="ab-h"><div class="wrap two"><div><h2 id="ab-h">${esc(t.homeAboutH)}</h2><p>${esc(t.homeAboutP)}</p><p><a class="more" href="${href(lang, '/about/')}">${esc(t.moreAbout)}</a></p></div><div><h2>${esc(t.homeGuideH)}</h2><p>${esc(t.homeGuideP)}</p><p><a class="more" href="${href(lang, '/guide/')}">${esc(t.readGuide)}</a></p></div></div></section>
+
 ${articlesTeaser(lang)}
 <section class="sec" aria-labelledby="br-h"><div class="wrap"><h2 id="br-h">${esc(c.branchesH)}</h2><div class="branches">${branchBlock(lang, 'sy')}${branchBlock(lang, 'ae')}</div></div></section>
 <section class="sec sec-alt" aria-labelledby="st-h"><div class="wrap"><h2 id="st-h">${esc(c.stepsH)}</h2><ol class="steps">${c.steps.map(([h, p]) => `<li><h3>${esc(h)}</h3><p>${esc(p)}</p></li>`).join('')}</ol></div></section>
@@ -259,9 +260,10 @@ function articleCard(lang, a) {
   const c = a[lang];
   return `<a class="acard" href="${href(lang, `/articles/${a.slug}/`)}"><h3>${esc(c.h1)}</h3><p>${esc(c.lead)}</p><span class="more">${esc(artUi[lang].readMore)}</span></a>`;
 }
+const COVERED = new Set(['DfpTyo1AYmx', 'DfNDHIegNM4']);
 function projectCard(lang, p) {
   const u = projectsPage[lang];
-  return `<a class="pcard" href="${IG_REEL(p.id)}" target="_blank" rel="noopener"><img src="${asset(`img/projects/${p.id}.webp`)}" width="408" height="545" alt="${esc(p[lang])}" loading="lazy"><span class="pt">${esc(p[lang])}</span><span class="pw">${esc(u.watch)}</span></a>`;
+  return `<a class="pcard${COVERED.has(p.id) ? ' pcov' : ''}" href="${IG_REEL(p.id)}" target="_blank" rel="noopener"><img src="${asset(`img/projects/${p.id}.webp`)}" width="408" height="545" alt="${esc(p[lang])}" loading="lazy">${COVERED.has(p.id) ? `<span class="pcv" aria-hidden="true"><img src="${asset('img/logo-mark.webp')}" width="64" height="64" alt="" loading="lazy"><b>Merzona</b><em>${esc(p[lang])}</em></span>` : ''}<span class="pt">${esc(p[lang])}</span><span class="pw">${esc(u.watch)}</span></a>`;
 }
 function projectsTeaser(lang) {
   const u = projectsPage[lang];
