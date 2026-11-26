@@ -451,6 +451,78 @@ export const articles = [
       ],
     },
   },
+  {
+    slug: 'villa-aluminum-glass-yafour-damascus-countryside',
+    services: ['windows-doors', 'railings', 'pergolas-shades'],
+    ar: {
+      title: 'ألمنيوم وزجاج للفلل في يعفور وريف دمشق: ما الذي تحتاجه؟',
+      desc: 'دليل لأصحاب الفلل في يعفور وريف دمشق: شبابيك وأبواب ألمنيوم، درابزين زجاجي للدرج والتراس، بيرغولا للحدائق، وما تحدده قبل طلب عرض السعر.',
+      h1: 'ألمنيوم وزجاج لفلل يعفور وريف دمشق',
+      lead: 'الفيلا تحتاج عادة أكثر من نوع عمل: شبابيك وأبواب، درابزين للدرج والتراس، وتظليل للحديقة. تنسيقها مع شركة واحدة يوفر عليك اختلاف الألوان والتفاصيل.',
+      sections: [
+        ['شبابيك وأبواب الفيلا', ['اختر نظام الفتح (مفصلي أو سحّاب) ولون الألمنيوم ونوع الزجاج بحسب الجهة والإطلالة، وحدّد إن كنت تريد زجاجاً مزدوجاً للعزل.']],
+        ['درابزين الدرج والتراس', ['الدرابزين الزجاجي يحافظ على الإطلالة ويعطي مظهراً حديثاً، ويُستعمل عادة مع الألمنيوم أو الستانلس للتثبيت. نفّذنا درابزين زجاجياً لدرج وتراس فيلا في يعفور.']],
+        ['بيرغولا وتظليل الحديقة', ['لتظليل الجلسات الخارجية والتراسات، حدّد المساحة والارتفاع وطريقة التثبيت.']],
+        ['كيف نبدأ؟', ['أرسل على واتساب فرع دمشق صوراً للفيلا والقياسات التقريبية، ونحدّد معك ما يلزم، ونخدم دمشق وريفها وباقي المحافظات السورية.']],
+      ],
+      faq: [
+        ['هل تنفذون أعمالاً في يعفور؟', 'نعم، نفّذنا مشاريع في يعفور، ونخدم دمشق وريفها وباقي المحافظات السورية.'],
+        ['هل يمكن تنسيق الشبابيك والدرابزين معاً؟', 'نعم، تنسيق الألوان والتفاصيل مع شركة واحدة يعطي مظهراً متناسقاً للفيلا.'],
+      ],
+    },
+    en: {
+      title: 'Aluminum and Glass for Villas in Yafour and Damascus Countryside',
+      desc: 'A guide for villa owners in Yafour and the Damascus countryside: aluminum windows and doors, glass railings for stairs and terraces, pergolas, and what to decide before asking for a quote.',
+      h1: 'Aluminum and glass for villas in Yafour and Damascus countryside',
+      lead: 'A villa usually needs more than one type of work: windows and doors, railings for stairs and terraces, and shade for the garden. Coordinating them with one company keeps colors and details consistent.',
+      sections: [
+        ['Villa windows and doors', ['Choose the opening system (hinged or sliding), the aluminum color and the glass type by orientation and view, and decide whether you want double glazing for insulation.']],
+        ['Stair and terrace railings', ['A glass railing keeps the view and gives a modern look. We built a glass railing for the stairs and terrace of a villa in Yafour.']],
+        ['Pergolas and garden shade', ['To shade outdoor seating and terraces, define the area, the height and the fixing method.']],
+        ['How to start', ['Send photos of the villa and approximate sizes to the Damascus branch on WhatsApp. We serve Damascus, its countryside and the other Syrian governorates.']],
+      ],
+      faq: [
+        ['Do you work in Yafour?', 'Yes, we have completed projects in Yafour, and we serve Damascus, its countryside and the other Syrian governorates.'],
+        ['Can windows and railings be coordinated?', 'Yes, coordinating colors and details with one company gives the villa a consistent look.'],
+      ],
+    },
+  },
+  {
+    slug: 'apartments-damascus-aluminum-glass-guide',
+    services: ['windows-doors', 'shower-cabins', 'glass-partitions'],
+    ar: {
+      title: 'ألمنيوم وزجاج للشقق في دمشق: شبابيك وكبائن شاور وقواطع',
+      desc: 'دليل لأصحاب الشقق في دمشق (المزة وغيرها): تبديل الشبابيك، كبائن الشاور، قواطع الزجاج، وكيف تجهّز الصور والقياسات لعرض سعر.',
+      h1: 'ألمنيوم وزجاج لشقق دمشق',
+      lead: 'في الشقق تكون المساحة محدودة، فاختيار نظام الفتح والزجاج المناسب يصنع فرقاً في الإضاءة والعزل والاستفادة من المكان.',
+      sections: [
+        ['تبديل الشبابيك', ['السحّاب يوفّر مساحة في الغرف الصغيرة، والمفصلي يعطي إحكاماً أفضل. حدّد الأبعاد ونوع الزجاج وما إذا كنت تريد زجاجاً مزدوجاً لتقليل الضجيج والحرارة.']],
+        ['كبائن الشاور', ['زجاج سيكوريت بإكسسوارات مقاومة للرطوبة. أرسل أبعاد منطقة الدش ونوع الباب المطلوب.']],
+        ['قواطع الزجاج', ['تفصل الغرف مع إبقاء الضوء الطبيعي، وتناسب الصالونات والمكاتب الصغيرة.']],
+        ['كيف تطلب عرض سعر؟', ['صوّر المكان وأرسل القياسات التقريبية إلى واتساب فرع دمشق، أو زر فرعنا في المزة خلال الدوام من السبت إلى الخميس.']],
+      ],
+      faq: [
+        ['هل يمكن تبديل الشبابيك فقط دون أعمال أخرى؟', 'نعم، يمكن طلب تبديل الشبابيك وحدها، ونحدد معك الأنسب بعد الصور والقياسات.'],
+        ['أين فرعكم في دمشق؟', 'في منطقة المزة، ويخدم دمشق وريفها.'],
+      ],
+    },
+    en: {
+      title: 'Aluminum and Glass for Apartments in Damascus: Windows, Showers, Partitions',
+      desc: 'A guide for apartment owners in Damascus (Mazzeh and elsewhere): replacing windows, shower cabins, glass partitions, and how to prepare photos and sizes for a quote.',
+      h1: 'Aluminum and glass for Damascus apartments',
+      lead: 'Apartments have limited space, so choosing the right opening system and glass makes a difference to light, insulation and use of the space.',
+      sections: [
+        ['Replacing windows', ['Sliding saves space in small rooms, while hinged gives a tighter seal. Define the sizes, glass type and whether you want double glazing to reduce noise and heat.']],
+        ['Shower cabins', ['Tempered glass with moisture-resistant fittings. Send the shower area sizes and the door type you want.']],
+        ['Glass partitions', ['They separate rooms while keeping natural light, and suit salons and small offices.']],
+        ['How to request a quote', ['Photograph the place and send approximate sizes to the Damascus branch on WhatsApp, or visit our Mazzeh branch during working hours, Saturday to Thursday.']],
+      ],
+      faq: [
+        ['Can I replace only the windows?', 'Yes, windows can be ordered on their own, and we confirm the best option after photos and sizes.'],
+        ['Where is your Damascus branch?', 'In Mazzeh, serving Damascus and its countryside.'],
+      ],
+    },
+  },
 ];
 
 export const glossaryPage = {
