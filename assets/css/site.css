@@ -271,7 +271,8 @@ html[lang=ar] .hero-compact{line-height:1.8}
 @media (prefers-reduced-motion:reduce){.hs img{animation:none}.hs img:first-child{opacity:.5}}
 
 /* توحيد ألوان كل صور المنتجات: درجة لونية واحدة باردة بلون الفضي/الأزرق */
-.tile-bg img,.g-it img,.hero-photo img,.hs img,.pcard img,.lb img{filter:var(--grade)}
+.tile-bg img,.g-it img,.hero-photo img,.hs img,.lb img{filter:var(--grade)}
+.pcard>img{filter:grayscale(.55) contrast(1.03) brightness(.99)}
 
 html[lang=ar] body,html[lang=ar] button,html[lang=ar] input,html[lang=ar] textarea,html[lang=ar] select{font-family:"Noto Naskh Site","Noto Naskh Arabic","IBM Plex Sans Arabic","Segoe UI",Tahoma,serif;font-size:1.05rem}
 html[lang=ar] body{line-height:1.8}
