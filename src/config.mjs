@@ -17,7 +17,7 @@ export const company = {
   // البريد من إعدادات السيستم (Info@Merzona.com) — لازم تأكدلي إنو شغّال قبل النشر
   email: 'info@merzona.com',
   // ===== معلومات ناقصة (null = ما بتنعرض) =====
-  foundingYear: null,     // سنة التأسيس
+  foundingYear: 2023,     // سنة التأسيس
   sameAs: ['https://www.instagram.com/merzona.sy', 'https://www.instagram.com/merzona.ae'],
 };
 
