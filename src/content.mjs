@@ -400,7 +400,7 @@ export const pages = {
     ar: {
       title: 'ألمنيوم وزجاج دمشق: شبابيك، سيكوريت، كيرتن وول | ميرزونا',
       desc: 'ميرزونا شركة مقاولات متخصصة بأعمال الألمنيوم والزجاج: شبابيك وأبواب، واجهات زجاجية، درابزين، كبائن شاور، بيرغولا وأكثر. فرع في دمشق وفرع في الإمارات.',
-      h1: 'ألمنيوم وزجاج في دمشق والإمارات: تصميم وتوريد وتركيب',
+      h1: 'شريكك في تصميم وتنفيذ واجهات الألمنيوم والزجاج (واجهات السيكوريت) وتوابعهم في سوريا والإمارات',
       lead: 'ميرزونا شركة مقاولات متخصصة بالألمنيوم والزجاج: شبابيك وأبواب، واجهات زجاجية، درابزين، كبائن شاور، بيرغولا وغيرها. تصميم وتوريد وتركيب، بفرع في دمشق وفرع في الإمارات.',
       servicesH: 'خدماتنا',
       servicesLead: 'اختر الخدمة لترى صور الأعمال وتطلب عرض سعر.',
@@ -417,7 +417,7 @@ export const pages = {
     en: {
       title: 'Merzona | Aluminum & Glass in Damascus, Dubai & Sharjah',
       desc: 'Contracting company specialized in aluminum and glass: windows, doors, glass facades, railings, shower cabins and pergolas. Branches in Damascus and the UAE.',
-      h1: 'Aluminum and glass works in Damascus and the UAE',
+      h1: 'Your partner in designing and building aluminum and glass facades (securit glass facades) and their accessories in Syria and the UAE',
       lead: 'Merzona is a contracting company specialized in aluminum and glass: windows and doors, glass facades, railings, shower cabins, pergolas and more. Design, supply and installation, with a branch in Damascus and a branch in the UAE.',
       servicesH: 'Our services',
       servicesLead: 'Pick a service to see our work and request a quote.',
