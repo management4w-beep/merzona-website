@@ -345,6 +345,112 @@ export const articles = [
       ],
     },
   },
+  {
+    slug: 'shopfront-glass-office-partitions',
+    services: ['glass-partitions', 'shopfronts', 'windows-doors'],
+    ar: {
+      title: 'واجهات المحلات وقواطع المكاتب الزجاجية: كيف تختار',
+      desc: 'دليل مبسّط لاختيار واجهة محل زجاجية أو قاطع زجاجي لمكتب: الزجاج المقسّى، الأبواب بدون إطار أو بإطار ألمنيوم، الخصوصية، وما تحتاج لتحضيره قبل التسعير.',
+      h1: 'واجهة المحل وقواطع المكتب الزجاجية: كيف تختار',
+      lead: 'الزجاج يجعل المحل ظاهراً للمارّة والمكتب مضيئاً. المهم أن تعرف أنواع الأبواب والقواطع وما يناسب استعمالك قبل أن تطلب عرض سعر.',
+      sections: [
+        ['الواجهة الزجاجية للمحل', [
+          'واجهة المحل تُنفَّذ غالباً من زجاج مقسّى (سيكوريت) بإطار ألمنيوم أو بدون إطار مع أبواب زجاجية، وتُختار حسب الشكل المطلوب ومتطلبات الأمان للمكان.',
+          'يمكن إضافة مدخل بباب مفصلي أو سحّاب، ولوحة الاسم والإضاءة تُنسَّق مع الواجهة قبل التنفيذ.',
+        ]],
+        ['قواطع المكاتب', [
+          'القاطع الزجاجي يقسم المكتب إلى غرف مع بقاء الضوء الطبيعي. يتوفر بإطار ألمنيوم أو بدون إطار، وبزجاج شفاف أو مصنفر أو ملوّن بحسب الخصوصية المطلوبة.',
+          'يمكن تركيب باب في القاطع بنظام مفصلي أو سحّاب، ويُتفق على نوع الإكسسوارات قبل التنفيذ.',
+        ]],
+        ['بإطار أم بدون إطار؟', [
+          'بدون إطار يعطي مظهراً أنظف وضوءاً أكثر، وبإطار ألمنيوم يعطي تثبيتاً أوضح وخطوطاً تحدّد المساحات. الاختيار يعود لذوقك وطبيعة المكان.',
+        ]],
+        ['الخصوصية', [
+          'للخصوصية يمكن استعمال زجاج مصنفر أو ملصقات بدرجات شفافية مختلفة على جزء من القاطع، مع إبقاء باقي الزجاج شفافاً.',
+        ]],
+        ['ماذا تحضّر قبل التسعير؟', [
+          'صورة المكان، وعرض وارتفاع الواجهة أو القاطع، وعدد الأبواب ونوع فتحها، واللون المطلوب للإطار، ودرجة الخصوصية. أرسلها على واتساب إلى فرع دمشق ونرد بعرض السعر.',
+        ]],
+      ],
+      faq: [
+        ['هل زجاج قواطع المكاتب سيكوريت؟', 'يُنفَّذ غالباً من الزجاج المقسّى لأنه أكثر أماناً، ويُحدَّد النوع والسماكة مع المنفّذ قبل الطلب.'],
+        ['هل يمكن تركيب باب داخل القاطع الزجاجي؟', 'نعم، يمكن تركيب باب مفصلي أو سحّاب داخل القاطع، ويُتفق على نوع الإكسسوارات.'],
+        ['ما الذي أرسله للحصول على عرض سعر؟', 'صورة للمكان والقياسات التقريبية وعدد الأبواب والتفاصيل المطلوبة، عبر واتساب.'],
+      ],
+    },
+    en: {
+      title: 'Glass Shopfronts and Office Partitions: How to Choose',
+      desc: 'A simple guide to choosing a glass shopfront or an office glass partition: tempered glass, frameless or aluminum-framed doors, privacy, and what to prepare before a quote.',
+      h1: 'Glass shopfronts and office partitions: how to choose',
+      lead: 'Glass makes a shop visible to passers-by and an office bright. Know the door and partition types and what suits your use before you ask for a quote.',
+      sections: [
+        ['The glass shopfront', ['A shopfront is usually made of tempered (securit) glass, with an aluminum frame or frameless with glass doors, chosen by the look you want and the safety needs of the place.', 'An entrance with a hinged or sliding door can be added, and the sign and lighting are coordinated with the facade before work starts.']],
+        ['Office partitions', ['A glass partition divides an office into rooms while keeping natural light. It comes with an aluminum frame or frameless, in clear, frosted or tinted glass depending on the privacy you need.', 'A hinged or sliding door can be fitted in the partition, and the fittings are agreed before work starts.']],
+        ['Framed or frameless?', ['Frameless gives a cleaner look and more light; an aluminum frame gives clearer fixing and lines that define spaces. The choice depends on your taste and the place.']],
+        ['Privacy', ['For privacy you can use frosted glass or films of different transparency on part of the partition and keep the rest clear.']],
+        ['What to prepare before a quote', ['A photo of the place, the width and height of the facade or partition, the number of doors and how they open, the frame color and the privacy level. Send them on WhatsApp to the Damascus branch and we will reply with a quote.']],
+      ],
+      faq: [
+        ['Is office partition glass tempered?', 'It is usually made of tempered glass because it is safer; the type and thickness are agreed before ordering.'],
+        ['Can a door be fitted inside a glass partition?', 'Yes, a hinged or sliding door can be fitted, and the fittings are agreed in advance.'],
+        ['What do I send to get a quote?', 'A photo of the place, approximate sizes, the number of doors and the details you need, on WhatsApp.'],
+      ],
+    },
+  },
+  {
+    slug: 'compare-aluminum-glass-quotes',
+    services: ['windows-doors', 'curtain-wall', 'railings'],
+    ar: {
+      title: 'كيف تقارن عروض أسعار الألمنيوم والزجاج؟ قائمة تدقيق',
+      desc: 'قبل أن تختار أرخص عرض: قائمة تدقيق لمقارنة عروض الألمنيوم والزجاج في دمشق، من نوع القطاع والزجاج والإكسسوارات إلى التركيب والمواعيد، بدون أرقام.',
+      h1: 'كيف تقارن عروض أسعار الألمنيوم والزجاج',
+      lead: 'عرضان بنفس السعر قد يكونان مختلفين تماماً بالمواصفات. هذه قائمة تساعدك على المقارنة بعدل قبل أن تقرر.',
+      sections: [
+        ['قارن المواصفات قبل السعر', [
+          'اكتب في كل عرض: نوع القطاع (عادي أو عازل)، وسماكته، ولونه، ونوع الزجاج (مفرد، مزدوج، مقسّى، لامينيت)، وسماكته.',
+        ]],
+        ['الإكسسوارات والأقفال', [
+          'اسأل عن نوع المفصلات والعجلات والأقفال والمقابض، فهي تؤثر بسهولة الاستعمال وعمر الشغل.',
+        ]],
+        ['ما الذي يشمله السعر؟', [
+          'تأكد هل يشمل السعر التركيب والنقل والإسفنج العازل والتشطيبات، أم أنها بنود منفصلة.',
+        ]],
+        ['القياس والمواعيد', [
+          'اسأل من يقيس الفتحات ومتى يتم التسليم، وماذا يحصل إذا اختلف القياس النهائي عن التقريبي.',
+        ]],
+        ['الضمان وما بعد التركيب', [
+          'اطلب أن يكون الضمان وما يغطيه مكتوباً، واسأل عن الصيانة بعد التركيب.',
+        ]],
+        ['أعمال سابقة', [
+          'اطلب صوراً أو فيديو لأعمال منفّذة شبيهة بما تريد، وتحقق منها قبل أن تقرر.',
+        ]],
+      ],
+      faq: [
+        ['لماذا تختلف الأسعار بين عرض وآخر؟', 'لأن المواصفات تختلف: نوع القطاع وسماكته، ونوع الزجاج، والإكسسوارات، وما يشمله السعر من تركيب وتشطيبات.'],
+        ['هل الأرخص هو الأفضل دائماً؟', 'ليس بالضرورة. قارن المواصفات المكتوبة أولاً، ثم السعر.'],
+        ['كيف أحصل على عرض واضح؟', 'أرسل صورة للمكان والقياسات ونوع العمل عبر واتساب، واطلب أن يُكتب العرض بالمواصفات.'],
+      ],
+    },
+    en: {
+      title: 'How to Compare Aluminum and Glass Quotes: A Checklist',
+      desc: 'Before you pick the cheapest offer: a checklist to compare aluminum and glass quotes in Damascus, from profile and glass type to fittings, installation and timing.',
+      h1: 'How to compare aluminum and glass quotes',
+      lead: 'Two quotes at the same price can be completely different in specification. This checklist helps you compare fairly before you decide.',
+      sections: [
+        ['Compare the specification before the price', ['Write down in each quote: the profile type (standard or thermal break), its thickness, its color, the glass type (single, double, tempered, laminated) and its thickness.']],
+        ['Fittings and locks', ['Ask about hinges, rollers, locks and handles; they affect ease of use and how long the work lasts.']],
+        ['What does the price include?', ['Check whether the price includes installation, transport, insulating foam and finishing, or whether they are separate items.']],
+        ['Measuring and timing', ['Ask who measures the openings, when delivery happens, and what happens if the final size differs from the approximate one.']],
+        ['Warranty and after installation', ['Ask for the warranty and what it covers in writing, and ask about maintenance after installation.']],
+        ['Previous work', ['Ask for photos or video of similar completed work and check them before you decide.']],
+      ],
+      faq: [
+        ['Why do prices differ between quotes?', 'Because the specification differs: profile type and thickness, glass type, fittings, and what the price includes in installation and finishing.'],
+        ['Is the cheapest always the best?', 'Not necessarily. Compare the written specification first, then the price.'],
+        ['How do I get a clear quote?', 'Send a photo of the place, sizes and type of work on WhatsApp, and ask for the quote to be written with the specification.'],
+      ],
+    },
+  },
 ];
 
 export const glossaryPage = {
