@@ -230,3 +230,21 @@ ul,ol{margin:0;padding:0}
 .acard p{margin:0 0 .7rem;color:var(--muted);font-size:.96em}
 .acard:hover,.acard:focus-visible{border-color:var(--b)}
 @media (min-width:760px){.acards{grid-template-columns:repeat(3,1fr)}}
+
+/* خلفية الهيرو المتحركة: ألواح زجاج وبروفيلات ألمنيوم مع انعكاس ضوء (CSS فقط، بدون فيديو) */
+.hero-compact{position:relative;isolation:isolate;background:radial-gradient(120% 140% at 85% 0%,#0b2433 0%,#000 60%)}
+.hero-compact .hero-in{position:relative;z-index:2}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;
+ background:
+  repeating-linear-gradient(90deg,transparent 0,transparent calc(25% - 3px),rgba(255,255,255,.10) calc(25% - 3px),rgba(255,255,255,.10) 25%),
+  linear-gradient(180deg,transparent 0,transparent calc(50% - 3px),rgba(255,255,255,.08) calc(50% - 3px),rgba(255,255,255,.08) calc(50% + 1px),transparent calc(50% + 1px))}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55))}
+.hero-bg .gl{position:absolute;top:-30%;height:160%;width:22%;transform:skewX(-20deg) translateX(-300%);
+ background:linear-gradient(90deg,transparent,rgba(102,179,223,.30),rgba(255,255,255,.22),rgba(102,179,223,.30),transparent);
+ filter:blur(6px);animation:glsweep 9s ease-in-out infinite}
+.hero-bg .g2{width:10%;animation-duration:12s;animation-delay:2.5s}
+.hero-bg .g3{width:30%;opacity:.55;animation-duration:15s;animation-delay:6s}
+@keyframes glsweep{0%{transform:skewX(-20deg) translateX(-300%)}55%,100%{transform:skewX(-20deg) translateX(650%)}}
+[dir=rtl] .hero-bg .gl{animation-name:glsweepr}
+@keyframes glsweepr{0%{transform:skewX(20deg) translateX(300%)}55%,100%{transform:skewX(20deg) translateX(-650%)}}
+@media (prefers-reduced-motion:reduce){.hero-bg .gl{animation:none;opacity:.25;transform:skewX(-20deg) translateX(150%)}}

@@ -226,7 +226,7 @@ function phero(lang, page, c, extra = '') {
 
 function bodyHome(lang) {
   const t = ui[lang], c = pages.home[lang];
-  return `<section class="hero hero-compact"><div class="wrap hero-in"><div class="hero-t"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p>${ctaButtons(lang, null, 'cta-hero')}</div></div></section>
+  return `<section class="hero hero-compact"><div class="hero-bg" aria-hidden="true"><i class="gl g1"></i><i class="gl g2"></i><i class="gl g3"></i></div><div class="wrap hero-in"><div class="hero-t"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p>${ctaButtons(lang, null, 'cta-hero')}</div></div></section>
 <section class="sec" aria-labelledby="svc-h"><div class="wrap"><h2 id="svc-h">${esc(c.servicesH)}</h2><p class="muted">${esc(c.servicesLead)}</p>${mosaic(lang)}</div></section>
 <section class="sec sec-alt" aria-labelledby="ab-h"><div class="wrap two"><div><h2 id="ab-h">${esc(t.homeAboutH)}</h2><p>${esc(t.homeAboutP)}</p><p><a class="more" href="${href(lang, '/about/')}">${esc(t.moreAbout)}</a></p></div><div><h2>${esc(t.homeGuideH)}</h2><p>${esc(t.homeGuideP)}</p><p><a class="more" href="${href(lang, '/guide/')}">${esc(t.readGuide)}</a></p></div></div></section>
 ${articlesTeaser(lang)}
