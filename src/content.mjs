@@ -36,8 +36,8 @@ export const services = [
     slug: 'railings',
     cats: ['cast aluminum handrails', 'glass handrail'],
     ar: {
-      name: 'درابزين ألمنيوم مصبوب وزجاج',
-      title: 'درابزين ألمنيوم مصبوب وزجاج | دمشق ودبي | ميرزونا',
+      name: 'درابزين وأدراج زجاجية',
+      title: 'درابزين وأدراج زجاجية | دمشق ودبي | ميرزونا',
       desc: 'درابزين ألمنيوم صب بتصاميم كلاسيكية وحديثة ودرابزين زجاج للأدراج والبلكونات. توريد وتركيب في دمشق ودبي والشارقة.',
       lead: 'درابزين للأدراج والبلكونات والتراسات: ألمنيوم مصبوب بتصاميم كلاسيكية وحديثة، أو زجاج بتثبيت أرضي أو جانبي.',
       features: [
@@ -49,8 +49,8 @@ export const services = [
       uses: ['الأدراج الداخلية والخارجية', 'البلكونات والتراسات', 'الفلل والمباني السكنية', 'المحال والمنشآت التجارية'],
     },
     en: {
-      name: 'Cast aluminum & glass railings',
-      title: 'Cast Aluminum & Glass Railings | Damascus & UAE | Merzona',
+      name: 'Glass railings & staircases',
+      title: 'Glass Railings & Staircases | Damascus & UAE | Merzona',
       desc: 'Cast aluminum railings in classic and modern designs, plus glass railings for stairs and balconies. Supply and installation in Damascus, Dubai and Sharjah.',
       lead: 'Railings for stairs, balconies and terraces: cast aluminum in classic and modern designs, or glass with floor or side fixing.',
       features: [
@@ -461,7 +461,7 @@ export const pages = {
       faq: [
         ['أين يقع فرع ميرزونا في دمشق؟', 'فرعنا في دمشق، منطقة المزة. يمكنك التواصل معه عبر واتساب أو الهاتف.'],
         ['هل تخدمون خارج دمشق؟', 'نعم، فرع سوريا يخدم دمشق وريفها وباقي المحافظات السورية.'],
-        ['ما الخدمات المتوفرة في دمشق؟', 'شبابيك وأبواب ألمنيوم، سحّاب، واجهات زجاجية كيرتن وول، درابزين ألمنيوم مصبوب وزجاج، كبائن شاور، بيرغولا ومظلات، مرايا، فولدينغ، مجالس زجاج، قباب وزجاج معشّق.'],
+        ['ما الخدمات المتوفرة في دمشق؟', 'شبابيك وأبواب ألمنيوم، سحّاب، واجهات زجاجية كيرتن وول، درابزين وأدراج زجاجية، كبائن شاور، بيرغولا ومظلات، مرايا، فولدينغ، مجالس زجاج، قباب وزجاج معشّق.'],
         ['كيف أحصل على عرض سعر في دمشق؟', 'أرسل لنا عبر واتساب صورة للمكان والقياسات التقريبية ونوع العمل، ونرسل لك عرض السعر.'],
       ],
     },

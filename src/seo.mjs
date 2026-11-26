@@ -4,7 +4,7 @@
 // عناوين عربية (≤ 60 حرفاً) تبدأ بكلمة البحث الأهم وتتبعها المدينة
 export const arTitles = {
   'windows-doors': 'تفصيل وتركيب شبابيك وأبواب ألمنيوم دمشق | ميرزونا',
-  railings: 'درابزين ألمنيوم صب وزجاج في دمشق | ميرزونا',
+  railings: 'درابزين وأدراج زجاجية في دمشق | ميرزونا',
   'sliding-systems': 'شبابيك وأبواب ألمنيوم سحّاب دمشق | ميرزونا',
   'curtain-wall': 'كيرتن وول وواجهات زجاجية دمشق | ميرزونا',
   'shower-cabins': 'كبائن شاور زجاج سيكوريت دمشق | ميرزونا',
@@ -27,7 +27,7 @@ export const seoExtra = {
     faq: { ar: [['ما الفرق بين الشباك المفصلي والسحّاب؟', 'المفصلي يفتح على مفصلات ويحتاج مساحة للتأرجح، والسحّاب ينزلق على سكّة فلا يحتاج مساحة ويناسب الفتحات العريضة.']], en: [['What is the difference between hinged and sliding windows?', 'A hinged window opens on hinges and needs swing space. A sliding window glides on a track, so it needs none and suits wide openings.']] },
   },
   railings: {
-    aka: { ar: ['دربزين ألمنيوم', 'درابزينات', 'دربزينات زجاج', 'هاندريل', 'درابزين سلالم وبلكونات'], en: ['aluminium railings', 'balustrades', 'handrails', 'glass balustrade'] },
+    aka: { ar: ['دربزين ألمنيوم', 'درابزين ألمنيوم مصبوب', 'درابزينات', 'دربزينات زجاج', 'هاندريل', 'درابزين سلالم وبلكونات'], en: ['aluminium railings', 'balustrades', 'handrails', 'glass balustrade'] },
     body: {
       ar: ['الألمنيوم المصبوب يتيح زخارف وأشكالاً كلاسيكية يصعب تنفيذها بالقطاعات العادية، وهو خيار شائع للأدراج والبلكونات والأسوار. أما درابزين الزجاج فيمنح إطلالة مفتوحة وخفة بصرية، ويُثبَّت أرضياً أو جانبياً.', 'حدّد الموقع (درج أو بلكون أو تراس) والطول التقريبي وأرسل صورة المكان، ونقترح عليك التصميم والتشطيب المناسبين.'],
       en: ['Cast aluminum allows ornament and classic shapes that are hard to make from standard profiles, and is a common choice for stairs, balconies and fences. Glass railings give an open view and visual lightness, and are fixed on the floor or on the side.', 'Tell us the location (stairs, balcony or terrace) and the approximate length, and send a photo, and we will suggest a suitable design and finish.'],
@@ -123,7 +123,7 @@ export const branchSeo = {
   uae: {
     ar: {
       h: 'ألمنيوم وزجاج لمشروعك في الإمارات',
-      ps: ['من فرعنا في الإمارات (دبي والشارقة) نخدم الإمارات كلها: شبابيك وأبواب ألمنيوم، أنظمة سحّاب وفولدينغ، واجهات كيرتن وول، درابزين ألمنيوم مصبوب وزجاج، كبائن شاور، بيرغولا ومظلات، مجالس زجاج وقباب، قواطع زجاج، واجهات محلات، كلادينغ، مطابخ ألمنيوم وصيانة.', 'أرسل لنا صورة المكان والقياسات عبر واتساب ونرد عليك بعرض السعر.'],
+      ps: ['من فرعنا في الإمارات (دبي والشارقة) نخدم الإمارات كلها: شبابيك وأبواب ألمنيوم، أنظمة سحّاب وفولدينغ، واجهات كيرتن وول، درابزين وأدراج زجاجية، كبائن شاور، بيرغولا ومظلات، مجالس زجاج وقباب، قواطع زجاج، واجهات محلات، كلادينغ، مطابخ ألمنيوم وصيانة.', 'أرسل لنا صورة المكان والقياسات عبر واتساب ونرد عليك بعرض السعر.'],
     },
     en: {
       h: 'Aluminum and glass for your project in the UAE',
