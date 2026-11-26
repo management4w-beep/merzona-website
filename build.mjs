@@ -216,7 +216,7 @@ function footer(lang) {
   const sy = branches.sy, ae = branches.ae;
   const nameOf = (s) => s[lang].name;
   return `<footer class="ft"><div class="wrap ft-in">
-<div class="ft-brand"><img src="${asset('img/logo-light.webp')}" width="120" height="78" alt="${esc(company.fullEn)}" loading="lazy"><p>${esc(t.footerBlurb)}</p><p class="links">${igLink(lang, 'sy')}<br>${igLink(lang, 'ae')}</p></div>
+<div class="ft-brand"><img src="${asset('img/logo-light.webp')}" width="120" height="107" alt="${esc(company.fullEn)}" loading="lazy"><p>${esc(t.footerBlurb)}</p><p class="links">${igLink(lang, 'sy')}<br>${igLink(lang, 'ae')}</p></div>
 <div><h2>${esc(t.nav.services)}</h2><ul>${services.map((s) => `<li><a href="${href(lang, `/services/${s.slug}/`)}">${esc(nameOf(s))}</a></li>`).join('')}</ul></div>
 <div><h2>${esc(t.nav.contact)}</h2>
 <p><a href="${href(lang, '/damascus/')}">${esc(t.branchSy)}</a><br><a dir="ltr" href="tel:${sy.tel}">${sy.phoneDisplay}</a></p>
