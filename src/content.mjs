@@ -270,7 +270,7 @@ export const services = [
   },
   {
     slug: 'mirrors',
-    cats: [],
+    cats: ['mirrors'],
     ar: {
       name: 'مرايا',
       title: 'مرايا بقياسات وأشكال حسب الطلب | ميرزونا',
@@ -298,7 +298,7 @@ export const services = [
   },
   {
     slug: 'folding-systems',
-    cats: [],
+    cats: ['folding'],
     ar: {
       name: 'أبواب ونوافذ فولدينغ',
       title: 'أبواب ونوافذ ألمنيوم فولدينغ (قابلة للطي) | ميرزونا',

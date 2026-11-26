@@ -1,6 +1,7 @@
 // خدمات إضافية أكّدها صاحب الشركة. محتوى عام عن المجال بدون أرقام أو ادعاءات.
+const CATS = {'glass-partitions': 'glass partitions', 'shopfronts': 'shopfronts', 'cladding': 'cladding', 'aluminum-kitchens': 'aluminum kitchens', 'maintenance': 'maintenance', 'skylights': 'skylights', 'shutters': 'shutters'};
 const mk = (slug, ar, en, check, seo, arTitle) => ({
-  svc: { slug, cats: [], ar, en },
+  svc: { slug, cats: CATS[slug] ? [CATS[slug]] : [], ar, en },
   check, seo, arTitle,
 });
 const d = (a, b) => `${a} اطلب عرض سعر من فرع دمشق أو الإمارات.`;
