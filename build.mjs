@@ -260,7 +260,7 @@ function articleCard(lang, a) {
   const c = a[lang];
   return `<a class="acard" href="${href(lang, `/articles/${a.slug}/`)}"><h3>${esc(c.h1)}</h3><p>${esc(c.lead)}</p><span class="more">${esc(artUi[lang].readMore)}</span></a>`;
 }
-const COVERED = new Set(['DfpTyo1AYmx', 'DfNDHIegNM4']);
+const COVERED = new Set(['DfpTyo1AYmx', 'DfNDHIegNM4', 'DeKPGybATmP']);
 function projectCard(lang, p) {
   const u = projectsPage[lang];
   return `<a class="pcard${COVERED.has(p.id) ? ' pcov' : ''}" href="${IG_REEL(p.id)}" target="_blank" rel="noopener"><img src="${asset(`img/projects/${p.id}.webp`)}" width="408" height="545" alt="${esc(p[lang])}" loading="lazy">${COVERED.has(p.id) ? `<span class="pcv" aria-hidden="true"><img src="${asset('img/logo-mark.webp')}" width="64" height="64" alt="" loading="lazy"><b>Merzona</b><em>${esc(p[lang])}</em></span>` : ''}<span class="pt">${esc(p[lang])}</span><span class="pw">${esc(u.watch)}</span></a>`;
