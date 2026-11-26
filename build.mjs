@@ -372,6 +372,7 @@ ${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP)}`;
 
 // ---------- JSON-LD ----------
 const orgId = `${ORIGIN}${BASE}/#organization`;
+const faqNode = (items) => ({ '@type': 'FAQPage', mainEntity: items.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 const branchId = (key) => `${abs('ar', key === 'sy' ? '/damascus/' : '/uae/')}#branch`;
 function areaList(key, lang) {
   if (key === 'sy') return [{ '@type': 'City', name: lang === 'ar' ? 'دمشق' : 'Damascus' }, { '@type': 'AdministrativeArea', name: lang === 'ar' ? 'ريف دمشق' : 'Rif Dimashq' }, { '@type': 'Country', name: lang === 'ar' ? 'سوريا' : 'Syria' }];
@@ -412,10 +413,11 @@ function jsonLd(lang, page) {
     g.push(branchNode('sy', lang), branchNode('ae', lang));
   } else {
     g.push(breadcrumbNode(lang, page));
-    if (page.key === 'damascus') g.push(branchNode('sy', lang));
-    if (page.key === 'uae') g.push(branchNode('ae', lang));
+    if (page.key === 'damascus') { g.push(branchNode('sy', lang)); g.push(faqNode(page.copy[lang].faq)); }
+    if (page.key === 'uae') { g.push(branchNode('ae', lang)); if (page.copy[lang].faq) g.push(faqNode(page.copy[lang].faq)); }
     if (page.key === 'svc') {
       const c = page.svc[lang];
+      g.push(faqNode([...(seoExtra[page.svc.slug] ? seoExtra[page.svc.slug].faq[lang] : []), ...ui[lang].faqSvc(c.name)]));
       g.push({ '@type': 'Service', '@id': `${abs(lang, page.path)}#service`, name: c.name, serviceType: c.name, description: c.desc, url: abs(lang, page.path), inLanguage: lang, provider: { '@id': orgId }, areaServed: [...areaList('sy', lang), ...areaList('ae', lang)] });
     }
     if (page.key === 'article') {
