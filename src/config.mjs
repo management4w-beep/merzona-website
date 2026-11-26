@@ -14,8 +14,8 @@ export const company = {
   nameEn: 'Merzona',
   fullAr: 'ميرزونا للألمنيوم والزجاج',
   fullEn: 'Merzona for Aluminum & Glass Works',
-  // البريد من إعدادات السيستم (Info@Merzona.com) — لازم تأكدلي إنو شغّال قبل النشر
-  email: 'info@merzona.com',
+  // البريد الرسمي للشركة
+  email: 'info@merzona.ae',
   // ===== معلومات ناقصة (null = ما بتنعرض) =====
   foundingYear: 2023,     // سنة التأسيس
   sameAs: ['https://www.instagram.com/merzona.sy', 'https://www.instagram.com/merzona.ae'],
