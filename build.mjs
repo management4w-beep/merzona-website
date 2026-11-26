@@ -227,9 +227,17 @@ function phero(lang, page, c, extra = '') {
   return `<section class="phero"><div class="wrap">${crumbs(lang, crumbTrail(lang, page))}<h1>${esc(c.h1 || c.name)}</h1><p class="lead">${esc(c.lead)}</p>${extra}</div></section>`;
 }
 
+// شرائح خلفية الهيرو: أول صورة حقيقية من عدة أقسام، تتبدّل بالتتابع مع حركة بطيئة (CSS فقط)
+function heroSlides() {
+  const picks = ['Glass Handrail', 'Sliding', 'Curtain wall Design', 'Showers', 'pergolas', 'Door'].map((c) => photos(c)[0]).filter(Boolean).slice(0, 5);
+  if (!picks.length) return '';
+  const n = picks.length, per = 6, total = n * per;
+  return `<div class="hs" style="--hn:${n};--ht:${total}s">${picks.map((p, i) => `<img src="${photoUrl(p.file)}" width="${p.w}" height="${p.h}" alt="" decoding="async"${i ? ' loading="lazy"' : ''} style="animation-delay:${i * per}s">`).join('')}</div>`;
+}
+
 function bodyHome(lang) {
   const t = ui[lang], c = pages.home[lang];
-  return `<section class="hero hero-compact"><div class="hero-bg" aria-hidden="true"><i class="gl g1"></i><i class="gl g2"></i><i class="gl g3"></i></div><div class="wrap hero-in"><div class="hero-t"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p>${ctaButtons(lang, null, 'cta-hero')}</div></div></section>
+  return `<section class="hero hero-compact"><div class="hero-bg" aria-hidden="true">${heroSlides()}<i class="gl g1"></i><i class="gl g2"></i><i class="gl g3"></i></div><div class="wrap hero-in"><div class="hero-t"><h1>${esc(c.h1)}</h1><p class="lead">${esc(c.lead)}</p>${ctaButtons(lang, null, 'cta-hero')}</div></div></section>
 <section class="sec" aria-labelledby="svc-h"><div class="wrap"><h2 id="svc-h">${esc(c.servicesH)}</h2><p class="muted">${esc(c.servicesLead)}</p>${mosaic(lang)}</div></section>
 <section class="sec sec-alt" aria-labelledby="ab-h"><div class="wrap two"><div><h2 id="ab-h">${esc(t.homeAboutH)}</h2><p>${esc(t.homeAboutP)}</p><p><a class="more" href="${href(lang, '/about/')}">${esc(t.moreAbout)}</a></p></div><div><h2>${esc(t.homeGuideH)}</h2><p>${esc(t.homeGuideP)}</p><p><a class="more" href="${href(lang, '/guide/')}">${esc(t.readGuide)}</a></p></div></div></section>
 ${projectsTeaser(lang)}
