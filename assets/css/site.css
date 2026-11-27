@@ -288,8 +288,3 @@ html[lang=en]{--hf:Georgia,"Times New Roman",serif}
 .pcard .pcv b{font-family:Georgia,"Times New Roman",serif;font-size:1.5rem}
 .pcard .pcv em{font-style:normal;font-weight:800;font-size:1.25rem;line-height:1.4}
 
-.qf{display:grid;gap:1rem;margin-top:1.2rem;max-width:620px}
-.qf label{display:grid;gap:.35rem;font-weight:600}
-.qf input,.qf select,.qf textarea{font:inherit;padding:.7rem .8rem;border:1px solid var(--bd);border-radius:var(--r);background:#fff;color:var(--k);width:100%}
-.qf input:focus-visible,.qf select:focus-visible,.qf textarea:focus-visible{outline:3px solid var(--b);outline-offset:1px}
-.qf .btn{justify-self:start;cursor:pointer}
