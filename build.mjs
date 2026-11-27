@@ -459,7 +459,7 @@ function head(lang, page, c) {
 <link rel="icon" type="image/png" sizes="32x32" href="${asset('img/favicon-32.png')}">
 <link rel="apple-touch-icon" href="${asset('img/apple-touch-icon.png')}">
 <link rel="manifest" href="${BASE}/site.webmanifest">
-<link rel="preload" href="${asset('fonts/naskh.woff')}" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="${asset('fonts/cairo.woff')}" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="${asset('fonts/plex-arabic-regular.woff')}" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="${asset('fonts/plex-arabic-semibold.woff')}" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="${asset('css/site.css')}?v=${CSS_V}">
