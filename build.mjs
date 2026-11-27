@@ -284,7 +284,7 @@ function bodyProject(lang, page) {
   const c = page.copy[lang], p = projects.find((x) => x.id === page.pid), u = projectsPage[lang];
   const svc = page.det.services.map((s) => svcBySlug[s]).filter(Boolean);
   return `${phero(lang, page, c)}
-<section class="sec"><div class="wrap two"><div><dl class="facts">${c.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl><p><a class="btn" href="${IG_REEL(p.id)}" target="_blank" rel="noopener">${esc(u.watch)}</a></p></div><div><img class="pimg" src="${asset(`img/projects/${p.id}.webp`)}" width="408" height="545" alt="${esc(c.h1)}" loading="eager"></div></div></section>
+<section class="sec"><div class="wrap two"><div><dl class="pfacts">${c.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl><p><a class="btn" href="${IG_REEL(p.id)}" target="_blank" rel="noopener">${esc(u.watch)}</a></p></div><div><img class="pimg" src="${asset(`img/projects/${p.id}.webp`)}" width="408" height="545" alt="${esc(c.h1)}" loading="eager"></div></div></section>
 <section class="sec sec-alt"><div class="wrap"><h2>${esc(ui[lang].nav.services)}</h2><p class="chips">${svc.map((s) => `<a href="${href(lang, `/services/${s.slug}/`)}">${esc(s[lang].name)}</a>`).join('')}<a href="${href(lang, '/projects/')}">${esc(u.all)}</a></p></div></section>
 ${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP, c.h1)}`;
 }
