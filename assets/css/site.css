@@ -288,3 +288,9 @@ html[lang=en]{--hf:Georgia,"Times New Roman",serif}
 .pcard .pcv b{font-family:Georgia,"Times New Roman",serif;font-size:1.5rem}
 .pcard .pcv em{font-style:normal;font-weight:800;font-size:1.25rem;line-height:1.4}
 
+
+.facts{display:grid;grid-template-columns:max-content 1fr;gap:.7rem 1.4rem;margin:0 0 1.6rem}
+.facts dt{font-weight:700}
+.facts dd{margin:0}
+.pimg{width:100%;max-width:340px;height:auto;display:block;border-radius:var(--r);filter:grayscale(.55) contrast(1.03) brightness(.99)}
+@media(max-width:640px){.facts{grid-template-columns:1fr;gap:.15rem}.facts dd{margin-bottom:.7rem}}

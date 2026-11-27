@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { projectDetails } from './src/project-details.mjs';
 import { SITE_URL, company, branches } from './src/config.mjs';
 import { services, ui as ui0, pages } from './src/content.mjs';
 import { checklists, extraUi, aboutPage, guidePage } from './src/content2.mjs';
@@ -54,6 +55,7 @@ const PAGES = [
   ...articles.map((a) => ({ key: 'article', art: a, path: `/articles/${a.slug}/`, copy: a, wa: null })),
   { key: 'glossary', path: '/glossary/', copy: glossaryPage, wa: null },
   { key: 'projects', path: '/projects/', copy: projectsPage, wa: null },
+  ...Object.entries(projectDetails).map(([id, d]) => ({ key: 'project', pid: id, det: d, path: `/projects/${d.slug}/`, copy: d, wa: null })),
   { key: 'damascus', path: '/damascus/', copy: pages.damascus, wa: 'sy' },
   { key: 'uae', path: '/uae/', copy: pages.uae, wa: 'ae' },
   { key: 'contact', path: '/contact/', copy: pages.contact, wa: null },
@@ -189,6 +191,7 @@ function crumbTrail(lang, page) {
   if (page.key === 'home') return [];
   if (page.key === 'articlesIndex') return [[artUi[lang].breadcrumb, page.path]];
   if (page.key === 'article') return [[artUi[lang].breadcrumb, '/articles/'], [page.copy[lang].h1, page.path]];
+  if (page.key === 'project') return [[projectsPage[lang].breadcrumb, '/projects/'], [page.copy[lang].h1, page.path]];
   if (page.key === 'projects') return [[projectsPage[lang].breadcrumb, page.path]];
   if (page.key === 'glossary') return [[artUi[lang].breadcrumb, '/articles/'], [artUi[lang].breadcrumbGlossary, page.path]];
   const label = { damascus: t.nav.damascus, uae: t.nav.uae, contact: t.nav.contact, about: t.breadcrumbAbout, guide: t.breadcrumbGuide }[page.key];
@@ -263,7 +266,9 @@ function articleCard(lang, a) {
 const COVERED = new Set(['DfpTyo1AYmx', 'DfNDHIegNM4', 'DeKPGybATmP']);
 function projectCard(lang, p) {
   const u = projectsPage[lang];
-  return `<a class="pcard${COVERED.has(p.id) ? ' pcov' : ''}" href="${IG_REEL(p.id)}" target="_blank" rel="noopener"><img src="${asset(`img/projects/${p.id}.webp`)}" width="408" height="545" alt="${esc(p[lang])}" loading="lazy">${COVERED.has(p.id) ? `<span class="pcv" aria-hidden="true"><img src="${asset('img/logo-mark.webp')}" width="64" height="64" alt="" loading="lazy"><b>Merzona</b><em>${esc(p[lang])}</em></span>` : ''}<span class="pt">${esc(p[lang])}</span><span class="pw">${esc(u.watch)}</span></a>`;
+  const det = projectDetails[p.id];
+  const link = det ? `href="${href(lang, `/projects/${det.slug}/`)}"` : `href="${IG_REEL(p.id)}" target="_blank" rel="noopener"`;
+  return `<a class="pcard${COVERED.has(p.id) ? ' pcov' : ''}" ${link}><img src="${asset(`img/projects/${p.id}.webp`)}" width="408" height="545" alt="${esc(p[lang])}" loading="lazy">${COVERED.has(p.id) ? `<span class="pcv" aria-hidden="true"><img src="${asset('img/logo-mark.webp')}" width="64" height="64" alt="" loading="lazy"><b>Merzona</b><em>${esc(p[lang])}</em></span>` : ''}<span class="pt">${esc(p[lang])}</span><span class="pw">${esc(u.watch)}</span></a>`;
 }
 function projectsTeaser(lang) {
   const u = projectsPage[lang];
@@ -275,6 +280,15 @@ function bodyProjects(lang) {
 <section class="sec"><div class="wrap"><div class="pgrid">${projects.map((p) => projectCard(lang, p)).join('')}</div><p class="links">${esc(u.follow)}: ${igLink(lang, 'sy')} &nbsp; ${igLink(lang, 'ae')}</p></div></section>
 ${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP)}`;
 }
+function bodyProject(lang, page) {
+  const c = page.copy[lang], p = projects.find((x) => x.id === page.pid), u = projectsPage[lang];
+  const svc = page.det.services.map((s) => svcBySlug[s]).filter(Boolean);
+  return `${phero(lang, page, c)}
+<section class="sec"><div class="wrap two"><div><dl class="facts">${c.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl><p><a class="btn" href="${IG_REEL(p.id)}" target="_blank" rel="noopener">${esc(u.watch)}</a></p></div><div><img class="pimg" src="${asset(`img/projects/${p.id}.webp`)}" width="408" height="545" alt="${esc(c.h1)}" loading="eager"></div></div></section>
+<section class="sec sec-alt"><div class="wrap"><h2>${esc(ui[lang].nav.services)}</h2><p class="chips">${svc.map((s) => `<a href="${href(lang, `/services/${s.slug}/`)}">${esc(s[lang].name)}</a>`).join('')}<a href="${href(lang, '/projects/')}">${esc(u.all)}</a></p></div></section>
+${ctaBand(lang, pages.home[lang].ctaH, pages.home[lang].ctaP, c.h1)}`;
+}
+
 function articlesTeaser(lang, n = 3) {
   const u = artUi[lang];
   return `<section class="sec" aria-labelledby="art-h"><div class="wrap"><h2 id="art-h">${esc(u.latestH)}</h2><p class="muted">${esc(u.latestP)}</p><div class="acards">${articles.slice(0, n).map((a) => articleCard(lang, a)).join('')}</div><p><a class="more" href="${href(lang, '/articles/')}">${esc(u.allArticles)}</a> &nbsp; <a class="more" href="${href(lang, '/glossary/')}">${esc(u.glossaryLink)}</a></p></div></section>`;
@@ -482,6 +496,7 @@ function render(lang, page) {
     case 'article': body = bodyArticle(lang, page); break;
     case 'glossary': body = bodyGlossary(lang); break;
     case 'projects': body = bodyProjects(lang); break;
+    case 'project': body = bodyProject(lang, page); break;
   }
   const t = ui[lang];
   return `<!doctype html>
