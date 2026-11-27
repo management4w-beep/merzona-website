@@ -449,4 +449,32 @@ export const projectDetails = {
       ],
     },
   },
+  DdwKN6PA5q_: {
+    slug: 'jumeirah-villa-slim-curtain-wall-project',
+    services: ['curtain-wall', 'windows-doors'],
+    ar: {
+      title: 'مشروع في الجميرا، دبي: كيرتن وول الغرير بمقطع نحيل | ميرزونا',
+      desc: 'مشروع في الجميرا بدبي: كيرتن وول الغرير بمقطع نحيل (Slim) 3 × 10 سم بسماكة 3 ملم، وزجاج مقسّى دبل Low-E عازل للحرارة، عاكس وشبه شفاف.',
+      h1: 'مشروع الجميرا، دبي: كيرتن وول بمقطع نحيل',
+      lead: 'كيرتن وول من الغرير بمقطع نحيل، وزجاج مقسّى عازل للحرارة عاكس وشبه شفاف.',
+      facts: [
+        ['المكان', 'الجميرا، دبي'],
+        ['النظام', 'كيرتن وول الغرير بمقطع نحيل (Slim)'],
+        ['قياس المقطع', '3 × 10 سم، بسماكة 3 ملم'],
+        ['الزجاج', 'دبل Low-E، مقسّى، عازل للحرارة، عاكس وشبه شفاف'],
+      ],
+    },
+    en: {
+      title: 'Jumeirah Project, Dubai: Al Ghurair Slim Curtain Wall | Merzona',
+      desc: 'A project in Jumeirah, Dubai: Al Ghurair slim (3 x 10 cm, 3 mm thick) curtain wall with tempered Low-E double glazing, heat-insulating, reflective and semi-transparent.',
+      h1: 'Jumeirah project, Dubai: curtain wall in a slim profile',
+      lead: 'An Al Ghurair curtain wall in a slim profile, with tempered, heat-insulating glass that is reflective and semi-transparent.',
+      facts: [
+        ['Location', 'Jumeirah, Dubai'],
+        ['System', 'Al Ghurair curtain wall, slim profile'],
+        ['Profile size', '3 x 10 cm, 3 mm thick'],
+        ['Glass', 'Low-E double glazing, tempered, heat-insulating, reflective and semi-transparent'],
+      ],
+    },
+  },
 };
