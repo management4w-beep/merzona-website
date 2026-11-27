@@ -267,4 +267,34 @@ export const projectDetails = {
       ],
     },
   },
+  DeO0arXgLeD: {
+    slug: 'curtain-wall-installation-notes-villa-al-awir-dubai',
+    services: ['curtain-wall', 'folding-systems'],
+    ar: {
+      title: 'ملاحظات على تركيب الكيرتن وول في فيلا بالعوير، دبي | ميرزونا',
+      desc: 'فيلا في العوير بدبي: كيرتن وول بمقاطع 5 × 10.5 سم، زجاج منحني 12 ملم، وأبواب فولدينج يونانية، مع ملاحظات حول أفضل طريقة لتركيب الكيرتن وول وتجنب الأخطاء.',
+      h1: 'ملاحظات على تركيب الكيرتن وول: فيلا في العوير، دبي',
+      lead: 'فيديو يشرح أفضل طريقة لتركيب الكيرتن وول وكيف نتجنب الأخطاء للوصول لأفضل النتائج.',
+      facts: [
+        ['المكان', 'فيلا في منطقة العوير، دبي'],
+        ['مقاطع الكيرتن وول', '5 × 10.5 سم'],
+        ['الزجاج المنحني', 'بسماكة 12 ملم'],
+        ['الأبواب', 'فولدينج يونانية'],
+        ['محتوى الفيديو', 'ملاحظات على تركيب الكيرتن وول: أفضل طريقة للتركيب، وتجنب الأخطاء، وأفضل النتائج'],
+      ],
+    },
+    en: {
+      title: 'Curtain Wall Installation Notes, Villa in Al Awir, Dubai | Merzona Project',
+      desc: 'A villa in Al Awir, Dubai: curtain wall with 5 x 10.5 cm profiles, 12 mm curved glass and Greek folding doors, with notes on the best way to install a curtain wall and avoid mistakes.',
+      h1: 'Curtain wall installation notes: a villa in Al Awir, Dubai',
+      lead: 'A video on the best way to install a curtain wall and how to avoid mistakes for the best results.',
+      facts: [
+        ['Location', 'A villa in Al Awir, Dubai'],
+        ['Curtain wall profiles', '5 x 10.5 cm'],
+        ['Curved glass', '12 mm thick'],
+        ['Doors', 'Greek folding doors'],
+        ['Video content', 'Notes on installing a curtain wall: the best installation method, avoiding mistakes, and getting the best results'],
+      ],
+    },
+  },
 };
