@@ -477,4 +477,34 @@ export const projectDetails = {
       ],
     },
   },
+  DdwDIrfgdq4: {
+    slug: 'slim-doors-hidden-floor-profile-jvc-dubai',
+    services: ['sliding-systems', 'windows-doors'],
+    ar: {
+      title: 'أبواب نحيلة بمقطع 2 سم مخفي في الأرض في JVC، دبي | ميرزونا',
+      desc: 'مشروع في JVC بدبي: أبواب بمقطع بريطاني نحيل 2 سم من فيتروماكس مخفي في الأرض، وزجاج Low-E عازل شبه شفاف.',
+      h1: 'أبواب نحيلة بمقطع 2 سم مخفي في الأرض، JVC دبي',
+      lead: 'مقطع بريطاني نحيل بعرض 2 سم يختفي في الأرض، مع زجاج Low-E عازل شبه شفاف.',
+      facts: [
+        ['المكان', 'JVC، دبي'],
+        ['المقطع', 'بريطاني، من شركة فيتروماكس'],
+        ['قياس المقطع', 'نحيل (Slim) بعرض 2 سم'],
+        ['التركيب', 'مقطع مخفي في الأرض'],
+        ['الزجاج', 'Low-E عازل للحرارة، شبه شفاف'],
+      ],
+    },
+    en: {
+      title: 'Slim Doors with a 2 cm Profile Hidden in the Floor, JVC Dubai | Merzona',
+      desc: 'A project in JVC, Dubai: doors in a 2 cm slim British profile from Vitromax, hidden in the floor, with insulating semi-transparent Low-E glass.',
+      h1: 'Slim doors with a 2 cm profile hidden in the floor, JVC Dubai',
+      lead: 'A slim 2 cm British profile that disappears into the floor, with insulating semi-transparent Low-E glass.',
+      facts: [
+        ['Location', 'JVC, Dubai'],
+        ['Profile', 'British, from Vitromax'],
+        ['Profile size', 'Slim, 2 cm wide'],
+        ['Installation', 'Profile hidden in the floor'],
+        ['Glass', 'Low-E, heat-insulating, semi-transparent'],
+      ],
+    },
+  },
 };
