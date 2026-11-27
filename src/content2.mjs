@@ -88,23 +88,23 @@ export const extraUi = {
 export const aboutPage = {
   ar: {
     title: 'عن ميرزونا | شركة ألمنيوم وزجاج في دمشق والإمارات',
-    desc: 'تعرّف على ميرزونا: شركة مقاولات متخصصة بأعمال الألمنيوم والزجاج، لها فرع في دمشق (المزة) وفرع في الإمارات (دبي والشارقة).',
+    desc: 'تعرّف على ميرزونا: شركة مقاولات متخصصة بأعمال الألمنيوم والزجاج، لها فرع في دمشق (المزة) وفرع في الشارقة يخدم دبي والإمارات كلها.',
     h1: 'عن ميرزونا',
     lead: 'شركة مقاولات متخصصة بأعمال الألمنيوم والزجاج، تخدم عملاءها من فرعين: دمشق في سوريا، ودبي والشارقة في الإمارات.',
     sections: [
       ['ماذا نعمل', ['نتولى أعمال الألمنيوم والزجاج لمشاريع البيوت والفلل والمحال والمكاتب والمباني: شبابيك وأبواب ألمنيوم، أنظمة سحّاب وفولدينغ، واجهات زجاجية (كيرتن وول)، درابزين وأدراج زجاجية، كبائن شاور، بيرغولا ومظلات، مجالس زجاج، قباب، زجاج معشّق ومرايا.', 'نقدّم هذه الأعمال من التصميم والتوريد حتى التركيب.']],
-      ['فروعنا', ['فرع دمشق في المزة، ويخدم دمشق وريفها وباقي المحافظات السورية.', 'فرع الشارقة في دبي والشارقة، ويخدم الإمارات كلها.']],
+      ['فروعنا', ['فرع دمشق في المزة، ويخدم دمشق وريفها وباقي المحافظات السورية.', 'فرع الشارقة يخدم دبي والإمارات كلها.']],
       ['طريقة العمل', ['تراسلنا عبر واتساب بصورة للمكان وقياسات تقريبية ونوع العمل، فنرسل لك عرض السعر، وبعد الاتفاق نبدأ التنفيذ.', 'كلما كانت التفاصيل أوضح كان العرض أدق. تجد في كل صفحة خدمة قائمة بما يُستحسن تحديده قبل الطلب.']],
     ],
   },
   en: {
     title: 'About Merzona | Aluminum & Glass in Damascus and the UAE',
-    desc: 'About Merzona: a contracting company specialized in aluminum and glass works, with a branch in Damascus (Mazzeh) and a branch in the UAE (Dubai and Sharjah).',
+    desc: 'About Merzona: a contracting company specialized in aluminum and glass works, with a branch in Damascus (Mazzeh) and a branch in Sharjah serving Dubai and the whole UAE.',
     h1: 'About Merzona',
     lead: 'A contracting company specialized in aluminum and glass works, serving clients from two branches: Damascus in Syria, and Dubai and Sharjah in the UAE.',
     sections: [
       ['What we do', ['We carry out aluminum and glass works for homes, villas, shops, offices and buildings: aluminum windows and doors, sliding and folding systems, curtain wall glass facades, cast aluminum and glass railings, shower cabins, pergolas and shades, glass majlis, domes, stained glass and mirrors.', 'We provide this work from design and supply through to installation.']],
-      ['Our branches', ['The Damascus branch is in Mazzeh and serves Damascus, its countryside and the other Syrian governorates.', 'The Sharjah branch is in Dubai and Sharjah and serves all of the UAE.']],
+      ['Our branches', ['The Damascus branch is in Mazzeh and serves Damascus, its countryside and the other Syrian governorates.', 'The Sharjah branch serves Dubai and all of the UAE.']],
       ['How we work', ['You message us on WhatsApp with a photo of the place, approximate sizes and the type of work. We send you a quote, and once agreed we start the work.', 'The clearer the details, the more accurate the quote. Every service page lists what is worth deciding before you order.']],
     ],
   },
