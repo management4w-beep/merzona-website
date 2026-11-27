@@ -344,11 +344,29 @@ ${galleryBlock(lang, mix, { per: 1, limit: 8, heading: t.ourWork })}
 ${faqBlock(lang, c.faqH, c.faq)}`;
 }
 
+
+function quoteForm(lang) {
+  const ar = lang === 'ar';
+  const L = ar
+    ? { h: 'اطلب عرض سعر', p: 'املأ التفاصيل ثم اضغط الزر ليفتح واتساب برسالة جاهزة. بعد ذلك أرسل صور المكان في نفس المحادثة.', name: 'الاسم', branch: 'الفرع', work: 'نوع العمل', area: 'المنطقة أو المدينة', det: 'تفاصيل أو قياسات تقريبية', send: 'أرسل عبر واتساب', other: 'غير ذلك', hello: 'مرحباً ميرزونا، أريد عرض سعر.', n: 'الاسم', w: 'نوع العمل', a: 'المنطقة', d: 'التفاصيل' }
+    : { h: 'Request a quote', p: 'Fill in the details, then press the button to open WhatsApp with a ready message. Then send photos of the place in the same chat.', name: 'Name', branch: 'Branch', work: 'Type of work', area: 'Area or city', det: 'Details or approximate sizes', send: 'Send on WhatsApp', other: 'Other', hello: 'Hello Merzona, I would like a quote.', n: 'Name', w: 'Type of work', a: 'Area', d: 'Details' };
+  const opts = services.map((s) => `<option>${esc(s[lang].name)}</option>`).join('') + `<option>${esc(L.other)}</option>`;
+  return `<section class="sec sec-alt" aria-labelledby="qf-h"><div class="wrap narrow"><h2 id="qf-h">${esc(L.h)}</h2><p class="muted">${esc(L.p)}</p>
+<form class="qf" id="qf" data-hello="${esc(L.hello)}" data-n="${esc(L.n)}" data-w="${esc(L.w)}" data-a="${esc(L.a)}" data-d="${esc(L.d)}" data-sy="${branches.sy.wa}" data-ae="${branches.ae.wa}">
+<label>${esc(L.name)}<input name="n" type="text" autocomplete="name"></label>
+<label>${esc(L.branch)}<select name="b"><option value="sy">${esc(ar ? 'فرع دمشق' : 'Damascus branch')}</option><option value="ae">${esc(ar ? 'فرع الشارقة' : 'Sharjah branch')}</option></select></label>
+<label>${esc(L.work)}<select name="w">${opts}</select></label>
+<label>${esc(L.area)}<input name="a" type="text"></label>
+<label>${esc(L.det)}<textarea name="d" rows="3"></textarea></label>
+<button type="submit" class="btn">${esc(L.send)}</button></form></div></section>`;
+}
+
 function bodyContact(lang) {
   const t = ui[lang], c = pages.contact[lang];
   return `${phero(lang, { key: 'contact', path: '/contact/' }, c)}
 <section class="sec"><div class="wrap"><div class="branches">${branchBlock(lang, 'sy')}${branchBlock(lang, 'ae')}</div>
-<p class="mail"><span>${esc(t.email)}:</span> <a dir="ltr" href="mailto:${company.email}">${esc(company.email)}</a></p></div></section>`;
+<p class="mail"><span>${esc(t.email)}:</span> <a dir="ltr" href="mailto:${company.email}">${esc(company.email)}</a></p></div></section>
+${quoteForm(lang)}`;
 }
 
 function bodyAbout(lang) {

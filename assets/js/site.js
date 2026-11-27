@@ -35,3 +35,20 @@
     btns.forEach(function (b, i) { b.addEventListener('click', function () { open(btns, i); }); });
   });
 })();
+
+/* نموذج طلب عرض السعر: يبني رسالة واتساب جاهزة، بدون إرسال بيانات لأي خادم. */
+(function () {
+  var f = document.getElementById('qf');
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var g = function (n) { return (f.elements[n].value || '').trim(); };
+    var lines = [f.getAttribute('data-hello')];
+    if (g('n')) lines.push(f.getAttribute('data-n') + ': ' + g('n'));
+    lines.push(f.getAttribute('data-w') + ': ' + g('w'));
+    if (g('a')) lines.push(f.getAttribute('data-a') + ': ' + g('a'));
+    if (g('d')) lines.push(f.getAttribute('data-d') + ': ' + g('d'));
+    var num = f.getAttribute('data-' + g('b'));
+    window.open('https://wa.me/' + num + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+  });
+})();
