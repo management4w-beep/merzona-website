@@ -69,6 +69,7 @@ ul,ol{margin:0;padding:0}
 .hero{background:var(--k);color:var(--w);overflow:hidden}
 .hero-in{display:grid;gap:2.2rem;padding-block:clamp(2.8rem,8vw,6rem);align-items:center}
 .hero h1{color:var(--w);max-width:18ch}
+html[lang=ar] .hero h1{font-weight:500}
 .hero .lead{color:#e9e9e9;max-width:56ch}
 .lead{font-size:1.04em;max-width:60ch}
 .cta-hero{margin-top:1.6rem}
