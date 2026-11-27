@@ -423,4 +423,30 @@ export const projectDetails = {
       ],
     },
   },
+  Dd0_fuuxxu9: {
+    slug: 'sliding-insect-screen-aluminum-frame',
+    services: ['windows-doors', 'sliding-systems'],
+    ar: {
+      title: 'شبك حشرات سحّاب بإطار ألمنيوم | مشروع ميرزونا',
+      desc: 'تركيب شبك حشرات سحّاب بشبك PVC وإطار ألمنيوم، مع فيديو للتنفيذ.',
+      h1: 'شبك حشرات سحّاب بإطار ألمنيوم',
+      lead: 'شبك حشرات سحّاب بشبك PVC وإطار ألمنيوم.',
+      facts: [
+        ['نوع العمل', 'شبك حشرات سحّاب'],
+        ['الشبك', 'PVC'],
+        ['الإطار', 'ألمنيوم'],
+      ],
+    },
+    en: {
+      title: 'Sliding Insect Screen with Aluminum Frame | Merzona Project',
+      desc: 'Installation of a sliding insect screen with PVC mesh and an aluminum frame, with a video of the work.',
+      h1: 'Sliding insect screen with an aluminum frame',
+      lead: 'A sliding insect screen with PVC mesh and an aluminum frame.',
+      facts: [
+        ['Type of work', 'Sliding insect screen'],
+        ['Mesh', 'PVC'],
+        ['Frame', 'Aluminum'],
+      ],
+    },
+  },
 };
