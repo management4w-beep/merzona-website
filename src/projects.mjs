@@ -1,6 +1,6 @@
 // فيديوهات حقيقية من حساب إنستغرام ميرزونا. الأغلفة مقصوصة من صفحة الحساب نفسه.
 // العناوين منقولة من نص الغلاف نفسه بدون إضافة مكان أو تفاصيل من عندنا.
-export const IG_REEL = (id) => `https://www.instagram.com/merzona.sy/reel/${id}/`;
+export const IG_REEL = (id) => `https://www.instagram.com/reel/${id}/`;
 
 export const projects = [
   ['DfpTyo1AYmx', 'هاندريل (درابزين) في يعفور، سوريا', 'Handrail in Yafour, Syria'],
