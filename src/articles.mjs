@@ -4,13 +4,13 @@
 export const labels = {
   ar: {
     nav: 'المقالات', glossaryNav: 'قاموس المصطلحات', breadcrumb: 'المقالات', breadcrumbGlossary: 'قاموس المصطلحات',
-    readMore: 'اقرأ المقال', latestH: 'مقالات تساعدك قبل الطلب', latestP: 'شروحات مبسّطة بالمصطلحات التي يستعملها الناس في دمشق وسوريا والإمارات.',
+    readMore: 'اقرأ المقال', latestH: 'مقالات تساعدك قبل الطلب', latestP: 'شروحات مبسّطة بالمصطلحات التي يستعملها الناس في سوريا والإمارات.',
     allArticles: 'كل المقالات', glossaryTeaserH: 'قاموس الألمنيوم والزجاج', glossaryTeaserP: 'سيكوريت أم تمبرد؟ ألمنيوم أم ألومنيوم؟ دربزين أم درابزين؟ كل التسميات ومعانيها في صفحة واحدة.',
     glossaryLink: 'افتح القاموس', relatedServices: 'الخدمات المتعلقة', alsoRead: 'اقرأ أيضاً', faqH: 'أسئلة شائعة',
   },
   en: {
     nav: 'Articles', glossaryNav: 'Glossary', breadcrumb: 'Articles', breadcrumbGlossary: 'Glossary',
-    readMore: 'Read the article', latestH: 'Articles to read before you order', latestP: 'Plain explanations using the terms people use in Damascus, Syria and the UAE.',
+    readMore: 'Read the article', latestH: 'Articles to read before you order', latestP: 'Plain explanations using the terms people use in Syria and the UAE.',
     allArticles: 'All articles', glossaryTeaserH: 'Aluminum and glass glossary', glossaryTeaserP: 'Tempered or "securit"? Aluminum or aluminium? Every name and what it means, on one page.',
     glossaryLink: 'Open the glossary', relatedServices: 'Related services', alsoRead: 'Also read', faqH: 'Common questions',
   },
@@ -18,14 +18,14 @@ export const labels = {
 
 export const articlesIndex = {
   ar: {
-    title: 'مقالات الألمنيوم والزجاج في دمشق وسوريا | ميرزونا',
-    desc: 'شروحات مبسّطة عن زجاج السيكوريت (التمبرد)، الزجاج المزدوج، شبابيك الألمنيوم، الكيرتن وول، الدرابزين وكبائن الشاور، بالمصطلحات التي يستعملها الناس في دمشق وسوريا.',
+    title: 'مقالات الألمنيوم والزجاج في سوريا | ميرزونا',
+    desc: 'شروحات مبسّطة عن زجاج السيكوريت (التمبرد)، الزجاج المزدوج، شبابيك الألمنيوم، الكيرتن وول، الدرابزين وكبائن الشاور، بالمصطلحات التي يستعملها الناس في سوريا.',
     h1: 'مقالات الألمنيوم والزجاج',
     lead: 'شروحات مبسّطة قبل أن تطلب: الفرق بين الأنواع، وكيف تختار، وما تحتاج أن تحضّره. نذكر فيها الأسماء المختلفة للمادة الواحدة حتى تجد ما تبحث عنه.',
   },
   en: {
-    title: 'Aluminum and Glass Articles for Damascus and Syria | Merzona',
-    desc: 'Plain explanations of tempered glass, double glazing, aluminum windows, curtain walls, railings and shower cabins, using the terms people use in Damascus, Syria and the UAE.',
+    title: 'Aluminum and Glass Articles for Syria | Merzona',
+    desc: 'Plain explanations of tempered glass, double glazing, aluminum windows, curtain walls, railings and shower cabins, using the terms people use in Syria and the UAE.',
     h1: 'Aluminum and glass articles',
     lead: 'Plain explanations before you order: the difference between types, how to choose, and what to prepare. We mention the different names for the same material so you can find what you are looking for.',
   },
