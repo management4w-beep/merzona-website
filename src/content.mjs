@@ -506,6 +506,7 @@ export const pages = {
       faq: [
         ['هل تخدمون الإمارات كلها؟', 'نعم، فرعنا في الشارقة يخدم دبي والإمارات كلها.'],
         ['كيف أتواصل مع فرع الشارقة؟', 'عبر واتساب أو الهاتف على الرقم الظاهر في هذه الصفحة.'],
+        ['ما ساعات دوام فرع الشارقة؟', 'من الأحد إلى الخميس، من الساعة 8 صباحاً حتى 4 عصراً، والجمعة والسبت عطلة.'],
         ['كيف أحصل على عرض سعر؟', 'أرسل لنا صورة للمكان والقياسات التقريبية ونوع العمل عبر واتساب، ونرسل لك عرض السعر.'],
       ],
     },
@@ -522,6 +523,7 @@ export const pages = {
       faq: [
         ['Do you serve the whole UAE?', 'Yes. Our Sharjah branch (also serving Dubai) serves all of the UAE.'],
         ['How do I contact the Sharjah branch?', 'On WhatsApp or by phone, using the number shown on this page.'],
+        ['What are the Sharjah branch working hours?', 'Sunday to Thursday, 8:00 am to 4:00 pm. Closed on Friday and Saturday.'],
         ['How do I get a quote?', 'Send us a photo of the place, approximate sizes and the type of work on WhatsApp, and we will send you a quote.'],
       ],
     },
