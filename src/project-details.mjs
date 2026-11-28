@@ -507,4 +507,28 @@ export const projectDetails = {
       ],
     },
   },
+  Ddv5dketrqL: {
+    slug: 'vetromax-sliding-zaafarana-building-marina',
+    services: ['sliding-systems', 'windows-doors'],
+    ar: {
+      title: 'تركيب سحّاب فيتروماكس في بناية الزعفرانة، مارينا | ميرزونا',
+      desc: 'مشروع في بناية الزعفرانة بمنطقة مارينا: تركيب نظام سحّاب فيتروماكس.',
+      h1: 'تركيب سحّاب فيتروماكس في بناية الزعفرانة، مارينا',
+      lead: 'تركيب نظام سحّاب من فيتروماكس في بناية الزعفرانة.',
+      facts: [
+        ['المكان', 'بناية الزعفرانة، مارينا'],
+        ['نوع العمل', 'تركيب سحّاب فيتروماكس'],
+      ],
+    },
+    en: {
+      title: 'Vetromax Sliding Installation, Al Zaafarana Building, Marina | Merzona',
+      desc: 'A project in the Al Zaafarana building in Marina: installation of a Vetromax sliding system.',
+      h1: 'Vetromax sliding installation in the Al Zaafarana building, Marina',
+      lead: 'Installation of a Vetromax sliding system in the Al Zaafarana building.',
+      facts: [
+        ['Location', 'Al Zaafarana building, Marina'],
+        ['Type of work', 'Installing Vetromax sliding'],
+      ],
+    },
+  },
 };
