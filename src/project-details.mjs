@@ -495,12 +495,12 @@ export const projectDetails = {
     },
     en: {
       title: 'Slim Doors with a 2 cm Profile Hidden in the Floor, JVC Dubai | Merzona',
-      desc: 'A project in JVC, Dubai: doors in a 2 cm slim British profile from Vitromax, hidden in the floor, with insulating semi-transparent Low-E glass.',
+      desc: 'A project in JVC, Dubai: doors in a 2 cm slim British profile from Vetromax, hidden in the floor, with insulating semi-transparent Low-E glass.',
       h1: 'Slim doors with a 2 cm profile hidden in the floor, JVC Dubai',
       lead: 'A slim 2 cm British profile that disappears into the floor, with insulating semi-transparent Low-E glass.',
       facts: [
         ['Location', 'JVC, Dubai'],
-        ['Profile', 'British, from Vitromax'],
+        ['Profile', 'British, from Vetromax'],
         ['Profile size', 'Slim, 2 cm wide'],
         ['Installation', 'Profile hidden in the floor'],
         ['Glass', 'Low-E, heat-insulating, semi-transparent'],
