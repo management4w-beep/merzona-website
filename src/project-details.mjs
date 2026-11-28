@@ -539,4 +539,36 @@ export const projectDetails = {
       ],
     },
   },
+  Ddvx77GApQ1: {
+    slug: 'slim-system-doors-installation-zaafarana-marina',
+    services: ['sliding-systems', 'windows-doors'],
+    ar: {
+      title: 'تركيب الأبواب ذات المقطع النحيل (Slim System) في الزعفرانة، مارينا | ميرزونا',
+      desc: 'تركيب أبواب Slim System من فيتروماكس في بناية الزعفرانة بمنطقة مارينا: مقطع بريطاني نحيل 2 سم مخفي في الأرض، وزجاج Low-E عازل شبه شفاف.',
+      h1: 'تركيب الأبواب ذات المقطع النحيل (Slim System) في بناية الزعفرانة، مارينا',
+      lead: 'مراحل تركيب أبواب المقطع النحيل من فيتروماكس، مع زجاج Low-E عازل شبه شفاف.',
+      facts: [
+        ['المكان', 'بناية الزعفرانة، مارينا'],
+        ['نوع العمل', 'تركيب أبواب Slim System'],
+        ['المقطع', 'بريطاني، من شركة فيتروماكس'],
+        ['قياس المقطع', 'نحيل (Slim) بعرض 2 سم'],
+        ['التركيب', 'مقطع مخفي في الأرض'],
+        ['الزجاج', 'Low-E عازل للحرارة، شبه شفاف'],
+      ],
+    },
+    en: {
+      title: 'Installing Slim System Doors in the Al Zaafarana Building, Marina | Merzona',
+      desc: 'Installation of Vetromax Slim System doors in the Al Zaafarana building in Marina: a 2 cm slim British profile hidden in the floor, with insulating semi-transparent Low-E glass.',
+      h1: 'Installing Slim System doors in the Al Zaafarana building, Marina',
+      lead: 'The stages of installing Vetromax slim-profile doors, with insulating semi-transparent Low-E glass.',
+      facts: [
+        ['Location', 'Al Zaafarana building, Marina'],
+        ['Type of work', 'Installing Slim System doors'],
+        ['Profile', 'British, from Vetromax'],
+        ['Profile size', 'Slim, 2 cm wide'],
+        ['Installation', 'Profile hidden in the floor'],
+        ['Glass', 'Low-E, heat-insulating, semi-transparent'],
+      ],
+    },
+  },
 };
